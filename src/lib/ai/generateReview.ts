@@ -21,6 +21,11 @@ function formatReponses(questions: Question[], reponses: Record<string, string |
     .join("\n");
 }
 
+// Modèle de repli si AI_MODEL est indisponible (Gemini renvoie régulièrement des 503
+// "high demand" sur les modèles flash récents) — évite de retomber sur l'avis gabarit
+// pour un simple pic de charge transitoire chez Google.
+const MODELE_REPLI = "gemini-flash-lite-latest";
+
 /**
  * Génère un avis Google à partir des réponses d'un client.
  * Modèle interchangeable via AI_MODEL (défaut: gemini-3.8-flash, le moins cher chez Google).
@@ -41,30 +46,32 @@ export async function generateReview({
 
   const langueCible = langue === "en" ? "English" : "français";
   const modele = process.env.AI_MODEL || "gemini-3.8-flash";
-
   const client = new GoogleGenAI({ apiKey });
 
-  try {
-    const response = await client.models.generateContent({
-      model: modele,
-      contents: `Établissement : ${entrepriseNom}\n\nRéponses du client :\n${contexte}\n\nRédige l'avis Google.`,
-      config: {
-        temperature: 0.9,
-        maxOutputTokens: 220,
-        systemInstruction:
-          "Tu rédiges des avis Google à la première personne pour des clients d'établissements locaux. " +
-          "Le ton est naturel, chaleureux et spécifique à l'expérience décrite, jamais générique ni exagéré. " +
-          "3 à 5 phrases maximum. Jamais de formules toutes faites répétées d'un avis à l'autre. " +
-          `Réponds uniquement en ${langueCible}, sans guillemets ni préambule.`,
-      },
-    });
+  const prompt = {
+    contents: `Établissement : ${entrepriseNom}\n\nRéponses du client :\n${contexte}\n\nRédige l'avis Google.`,
+    config: {
+      temperature: 0.9,
+      maxOutputTokens: 220,
+      systemInstruction:
+        "Tu rédiges des avis Google à la première personne pour des clients d'établissements locaux. " +
+        "Le ton est naturel, chaleureux et spécifique à l'expérience décrite, jamais générique ni exagéré. " +
+        "3 à 5 phrases maximum. Jamais de formules toutes faites répétées d'un avis à l'autre. " +
+        `Réponds uniquement en ${langueCible}, sans guillemets ni préambule.`,
+    },
+  };
 
-    return response.text?.trim() || genererAvisDemo(entrepriseNom, contexte, langue);
-  } catch (error) {
-    console.error("generateReview: appel Gemini échoué", error);
-    const detail = error instanceof Error ? error.message : String(error);
-    return `${genererAvisDemo(entrepriseNom, contexte, langue)}\n[DEBUG: ${detail}]`;
+  for (const modeleEssaye of [modele, MODELE_REPLI]) {
+    try {
+      const response = await client.models.generateContent({ model: modeleEssaye, ...prompt });
+      const texte = response.text?.trim();
+      if (texte) return texte;
+    } catch (error) {
+      console.error(`generateReview: appel Gemini (${modeleEssaye}) échoué`, error);
+    }
   }
+
+  return genererAvisDemo(entrepriseNom, contexte, langue);
 }
 
 function genererAvisDemo(entrepriseNom: string, contexte: string, langue: string): string {
