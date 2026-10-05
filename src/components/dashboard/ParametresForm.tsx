@@ -61,9 +61,17 @@ export function ParametresForm({ entreprise }: { entreprise: Entreprise }) {
         <input
           value={googleUrl}
           onChange={(e) => setGoogleUrl(e.target.value)}
-          placeholder="https://g.page/r/..."
+          placeholder="https://g.page/r/.../review"
           className="mt-1.5 w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm"
         />
+        <p className="mt-1.5 text-xs text-zinc-500">
+          Sans ce lien, vos clients atterrissent sur une recherche Google générique au lieu de votre page
+          d&apos;avis — à éviter. Pour le récupérer sans friction : cherchez votre établissement sur Google
+          Maps → bouton <span className="font-medium">Partager</span> → <span className="font-medium">Demander des avis</span>,
+          ou dans votre fiche Google Business Profile → <span className="font-medium">Obtenir plus d&apos;avis</span>.
+          Le lien ressemble à <code className="rounded bg-zinc-100 px-1 py-0.5">g.page/r/.../review</code> et ouvre
+          directement la fenêtre de rédaction d&apos;avis, sans étape intermédiaire.
+        </p>
       </div>
 
       <div>

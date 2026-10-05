@@ -128,7 +128,10 @@ export function Questionnaire({ entreprise, questions }: QuestionnaireProps) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ sessionId, avisFinal: avisGenere }),
     }).catch(() => {});
-    window.open(entreprise.google_review_url || "https://www.google.com/search?q=avis+google", "_blank");
+    const lienGoogle =
+      entreprise.google_review_url ||
+      `https://www.google.com/search?q=${encodeURIComponent(`avis ${entreprise.nom}`)}`;
+    window.open(lienGoogle, "_blank");
     setPhase("merci");
   }
 
