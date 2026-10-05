@@ -62,7 +62,8 @@ export async function generateReview({
     return response.text?.trim() || genererAvisDemo(entrepriseNom, contexte, langue);
   } catch (error) {
     console.error("generateReview: appel Gemini échoué", error);
-    return genererAvisDemo(entrepriseNom, contexte, langue);
+    const detail = error instanceof Error ? error.message : String(error);
+    return `${genererAvisDemo(entrepriseNom, contexte, langue)}\n[DEBUG: ${detail}]`;
   }
 }
 
