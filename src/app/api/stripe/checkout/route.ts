@@ -31,11 +31,16 @@ export async function POST(request: Request) {
 
   if (isSupabaseConfigured()) {
     const supabase = createAdminClient();
-    const { data: existant } = await supabase
+    const { data: existant, error } = await supabase
       .from("entreprises")
       .select("id")
       .eq("slug", slug)
       .maybeSingle();
+
+    if (error) {
+      console.error("checkout: vérification slug échouée", error.message);
+      return NextResponse.json({ error: "Vérification indisponible, réessayez." }, { status: 503 });
+    }
 
     if (existant) {
       return NextResponse.json({ error: "Ce lien est déjà pris." }, { status: 409 });

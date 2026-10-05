@@ -16,11 +16,16 @@ export async function GET(request: Request) {
   }
 
   const supabase = createAdminClient();
-  const { data } = await supabase
+  const { data, error } = await supabase
     .from("entreprises")
     .select("id")
     .eq("slug", slugDemande)
     .maybeSingle();
+
+  if (error) {
+    console.error("slug-disponible: requête Supabase échouée", error.message);
+    return NextResponse.json({ error: "Vérification indisponible" }, { status: 503 });
+  }
 
   return NextResponse.json({ disponible: !data, slug: slugDemande });
 }

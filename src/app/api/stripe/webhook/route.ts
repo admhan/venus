@@ -33,25 +33,33 @@ export async function POST(request: Request) {
 }
 
 async function provisionnerEntreprise(session: Stripe.Checkout.Session) {
-  if (!isSupabaseConfigured()) return;
+  if (!isSupabaseConfigured()) {
+    console.error("Webhook Stripe: Supabase non configuré, entreprise non provisionnée");
+    return;
+  }
 
   const { nom, slug, email } = session.metadata || {};
-  if (!nom || !slug || !email) return;
+  if (!nom || !slug || !email) {
+    console.error("Webhook Stripe: métadonnées manquantes sur la session", session.id);
+    return;
+  }
 
   const supabase = createAdminClient();
 
-  const { data: entrepriseExistante } = await supabase
+  const { data: entrepriseExistante, error: lookupError } = await supabase
     .from("entreprises")
     .select("id")
     .eq("slug", slug)
     .maybeSingle();
+  if (lookupError) throw new Error(`Lookup entreprise échoué: ${lookupError.message}`);
   if (entrepriseExistante) return;
 
-  const { data: invitation } = await supabase.auth.admin.inviteUserByEmail(email, {
+  const { data: invitation, error: inviteError } = await supabase.auth.admin.inviteUserByEmail(email, {
     redirectTo: `${getSiteUrl()}/auth/callback`,
   });
+  if (inviteError) console.error("Webhook Stripe: invitation échouée", inviteError.message);
 
-  const { data: entreprise } = await supabase
+  const { data: entreprise, error: insertError } = await supabase
     .from("entreprises")
     .insert({
       user_id: invitation?.user?.id ?? null,
@@ -65,12 +73,17 @@ async function provisionnerEntreprise(session: Stripe.Checkout.Session) {
     .select("id")
     .single();
 
-  if (!entreprise) return;
+  if (insertError || !entreprise) {
+    throw new Error(`Création entreprise échouée: ${insertError?.message}`);
+  }
 
-  await supabase.from("questions").insert(
+  const { error: questionsError } = await supabase.from("questions").insert(
     QUESTIONS_GENERIQUES_INSTITUT_BEAUTE.map((q) => ({
       entreprise_id: entreprise.id,
       ...q,
     }))
   );
+  if (questionsError) {
+    console.error("Webhook Stripe: insertion questions échouée", questionsError.message);
+  }
 }
