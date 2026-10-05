@@ -1,26 +1,49 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/*
+ * DA Starnote
+ * - ink   : neutres bleu nuit (texte, bordures, fonds) — ink-900 = Bleu nuit #0B1B33
+ * - brand : bleu signal (actions, liens) — brand-600 = #2F5597, brand-300 = Lumière d'étoile #9DB8E3
+ * - ink-100 = Glacier #EEF2F7 (fonds de section)
+ */
+@theme {
+  --color-ink-50: #f5f7fa;
+  --color-ink-100: #eef2f7;
+  --color-ink-200: #d3dbe7;
+  --color-ink-300: #b4c0d3;
+  --color-ink-400: #7d8ba3;
+  --color-ink-500: #5a6a84;
+  --color-ink-600: #4a5a73;
+  --color-ink-700: #33435c;
+  --color-ink-800: #1b2b45;
+  --color-ink-900: #0b1b33;
+  --color-ink-950: #060f1f;
+
+  --color-brand-50: #eef3fb;
+  --color-brand-100: #dce6f6;
+  --color-brand-200: #b9cdec;
+  --color-brand-300: #9db8e3;
+  --color-brand-400: #6f93cf;
+  --color-brand-500: #4470b5;
+  --color-brand-600: #2f5597;
+  --color-brand-700: #254680;
+  --color-brand-800: #1d3866;
+  --color-brand-900: #162b4f;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-schibsted), ui-sans-serif, system-ui, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  --background: #ffffff;
+  --foreground: #0b1b33;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
 }

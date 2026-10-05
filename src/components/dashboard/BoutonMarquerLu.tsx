@@ -10,7 +10,7 @@ export function BoutonMarquerLu({ feedbackId }: { feedbackId: string }) {
     <button
       onClick={() => startTransition(() => marquerCommeLu(feedbackId))}
       disabled={isPending}
-      className="rounded-full border border-zinc-200 px-4 py-1.5 text-xs font-medium text-zinc-600 hover:bg-zinc-50 disabled:opacity-50"
+      className="rounded-full border border-ink-200 px-4 py-1.5 text-xs font-medium text-ink-600 hover:bg-ink-50 disabled:opacity-50"
     >
       Marquer comme lu
     </button>

@@ -15,7 +15,7 @@ const ETAPES = [
     numero: "03",
     titre: "L'IA rédige un avis pour eux",
     description:
-      "À partir de leurs réponses, Venus génère un avis naturel et sincère, jamais deux fois identique. Le client peut le modifier avant de le publier.",
+      "À partir de leurs réponses, Starnote génère un avis naturel et sincère, jamais deux fois identique. Le client peut le modifier avant de le publier.",
   },
   {
     numero: "04",
@@ -30,10 +30,10 @@ export function HowItWorks() {
     <section id="comment-ca-marche" className="bg-white py-24">
       <div className="mx-auto max-w-6xl px-6">
         <div className="max-w-2xl">
-          <h2 className="text-3xl font-semibold tracking-tight text-zinc-900 sm:text-4xl">
+          <h2 className="text-3xl font-semibold tracking-tight text-ink-900 sm:text-4xl">
             Comment ça marche
           </h2>
-          <p className="mt-4 text-lg text-zinc-600">
+          <p className="mt-4 text-lg text-ink-600">
             Quatre étapes, zéro friction pour votre client, et un flux d&apos;avis Google
             constant pour votre établissement.
           </p>
@@ -42,9 +42,9 @@ export function HowItWorks() {
         <div className="mt-16 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           {ETAPES.map((etape) => (
             <div key={etape.numero}>
-              <p className="text-sm font-semibold text-violet-600">{etape.numero}</p>
-              <h3 className="mt-3 text-lg font-semibold text-zinc-900">{etape.titre}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-zinc-600">{etape.description}</p>
+              <p className="text-sm font-semibold text-brand-600">{etape.numero}</p>
+              <h3 className="mt-3 text-lg font-semibold text-ink-900">{etape.titre}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-ink-600">{etape.description}</p>
             </div>
           ))}
         </div>

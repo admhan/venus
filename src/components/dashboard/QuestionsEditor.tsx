@@ -56,19 +56,19 @@ export function QuestionsEditor({ questionsInitiales }: { questionsInitiales: Qu
     <div>
       <div className="space-y-4">
         {questions.map((question, index) => (
-          <div key={index} className="rounded-2xl border border-zinc-200 bg-white p-6">
+          <div key={index} className="rounded-2xl border border-ink-200 bg-white p-6">
             <div className="flex items-start justify-between gap-4">
               <input
                 value={question.texte}
                 onChange={(e) => mettreAJour(index, { texte: e.target.value })}
                 placeholder="Texte de la question"
-                className="flex-1 border-b border-transparent text-sm font-medium text-zinc-900 focus:border-zinc-300 focus:outline-none"
+                className="flex-1 border-b border-transparent text-sm font-medium text-ink-900 focus:border-ink-300 focus:outline-none"
               />
               <div className="flex items-center gap-2">
-                <button onClick={() => deplacer(index, -1)} className="text-xs text-zinc-400 hover:text-zinc-700">
+                <button onClick={() => deplacer(index, -1)} className="text-xs text-ink-400 hover:text-ink-700">
                   ↑
                 </button>
-                <button onClick={() => deplacer(index, 1)} className="text-xs text-zinc-400 hover:text-zinc-700">
+                <button onClick={() => deplacer(index, 1)} className="text-xs text-ink-400 hover:text-ink-700">
                   ↓
                 </button>
                 <button onClick={() => supprimerQuestion(index)} className="text-xs text-red-500 hover:text-red-700">
@@ -86,7 +86,7 @@ export function QuestionsEditor({ questionsInitiales }: { questionsInitiales: Qu
                   options: type === "choix_unique" || type === "choix_multiple" ? question.options || ["Option 1"] : null,
                 });
               }}
-              className="mt-3 rounded-lg border border-zinc-200 px-3 py-1.5 text-xs text-zinc-600"
+              className="mt-3 rounded-lg border border-ink-200 px-3 py-1.5 text-xs text-ink-600"
             >
               {Object.entries(LABELS_TYPE).map(([valeur, label]) => (
                 <option key={valeur} value={valeur}>
@@ -106,14 +106,14 @@ export function QuestionsEditor({ questionsInitiales }: { questionsInitiales: Qu
                         options[oIndex] = e.target.value;
                         mettreAJour(index, { options });
                       }}
-                      className="flex-1 rounded-lg border border-zinc-200 px-3 py-1.5 text-sm"
+                      className="flex-1 rounded-lg border border-ink-200 px-3 py-1.5 text-sm"
                     />
                     <button
                       onClick={() => {
                         const options = (question.options || []).filter((_, i) => i !== oIndex);
                         mettreAJour(index, { options });
                       }}
-                      className="text-xs text-zinc-400 hover:text-red-600"
+                      className="text-xs text-ink-400 hover:text-red-600"
                     >
                       ✕
                     </button>
@@ -125,7 +125,7 @@ export function QuestionsEditor({ questionsInitiales }: { questionsInitiales: Qu
                       options: [...(question.options || []), `Option ${(question.options?.length || 0) + 1}`],
                     })
                   }
-                  className="text-xs font-medium text-violet-600 hover:text-violet-800"
+                  className="text-xs font-medium text-brand-600 hover:text-brand-800"
                 >
                   + Ajouter une option
                 </button>
@@ -138,14 +138,14 @@ export function QuestionsEditor({ questionsInitiales }: { questionsInitiales: Qu
       <div className="mt-6 flex items-center gap-4">
         <button
           onClick={ajouterQuestion}
-          className="rounded-full border border-zinc-200 px-5 py-2 text-sm font-medium text-zinc-700 hover:bg-zinc-50"
+          className="rounded-full border border-ink-200 px-5 py-2 text-sm font-medium text-ink-700 hover:bg-ink-50"
         >
           + Ajouter une question
         </button>
         <button
           onClick={sauvegarderTout}
           disabled={isPending}
-          className="rounded-full bg-zinc-900 px-6 py-2 text-sm font-semibold text-white disabled:opacity-50"
+          className="rounded-full bg-ink-900 px-6 py-2 text-sm font-semibold text-white disabled:opacity-50"
         >
           {isPending ? "Enregistrement…" : sauvegarde ? "Enregistré ✓" : "Enregistrer"}
         </button>

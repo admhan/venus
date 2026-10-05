@@ -22,7 +22,7 @@ export default async function PageVueEnsemble() {
   const lien = `${getSiteUrl()}/${entreprise!.slug}`;
   const qrCodeDataUrl = await QRCode.toDataURL(lien, {
     margin: 1,
-    color: { dark: "#18181b", light: "#ffffff" },
+    color: { dark: "#0B1B33", light: "#ffffff" },
   });
 
   const { count: totalSessions } = await supabase
@@ -44,7 +44,7 @@ export default async function PageVueEnsemble() {
 
   return (
     <div className="max-w-3xl">
-      <h1 className="text-2xl font-semibold text-zinc-900">Vue d&apos;ensemble</h1>
+      <h1 className="text-2xl font-semibold text-ink-900">Vue d&apos;ensemble</h1>
 
       <div className="mt-8 grid grid-cols-3 gap-4">
         <StatCard label="Questionnaires démarrés" valeur={totalSessions ?? 0} />
@@ -52,15 +52,15 @@ export default async function PageVueEnsemble() {
         <StatCard label="Feedback privé non lu" valeur={totalFeedback ?? 0} />
       </div>
 
-      <div className="mt-10 rounded-2xl border border-zinc-200 bg-white p-8">
-        <h2 className="text-base font-semibold text-zinc-900">Partager le questionnaire</h2>
-        <p className="mt-1 text-sm text-zinc-500">
+      <div className="mt-10 rounded-2xl border border-ink-200 bg-white p-8">
+        <h2 className="text-base font-semibold text-ink-900">Partager le questionnaire</h2>
+        <p className="mt-1 text-sm text-ink-500">
           Affichez le QR code en caisse, ou partagez le lien par SMS après chaque visite.
         </p>
 
         <div className="mt-6 flex items-start gap-8">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={qrCodeDataUrl} alt="QR code du questionnaire" className="h-40 w-40 rounded-xl border border-zinc-100" />
+          <img src={qrCodeDataUrl} alt="QR code du questionnaire" className="h-40 w-40 rounded-xl border border-ink-100" />
           <div className="flex-1">
             <LienPartage lien={lien} />
           </div>
@@ -72,9 +72,9 @@ export default async function PageVueEnsemble() {
 
 function StatCard({ label, valeur }: { label: string; valeur: number }) {
   return (
-    <div className="rounded-2xl border border-zinc-200 bg-white p-6">
-      <p className="text-3xl font-semibold text-zinc-900">{valeur}</p>
-      <p className="mt-1 text-sm text-zinc-500">{label}</p>
+    <div className="rounded-2xl border border-ink-200 bg-white p-6">
+      <p className="text-3xl font-semibold text-ink-900">{valeur}</p>
+      <p className="mt-1 text-sm text-ink-500">{label}</p>
     </div>
   );
 }

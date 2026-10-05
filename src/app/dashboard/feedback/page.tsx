@@ -24,25 +24,25 @@ export default async function PageFeedback() {
 
   return (
     <div className="max-w-2xl">
-      <h1 className="text-2xl font-semibold text-zinc-900">Feedback privé</h1>
-      <p className="mt-1 text-sm text-zinc-500">
+      <h1 className="text-2xl font-semibold text-ink-900">Feedback privé</h1>
+      <p className="mt-1 text-sm text-ink-500">
         Les retours des clients insatisfaits, envoyés uniquement à vous, jamais sur Google.
       </p>
 
       <div className="mt-8 space-y-4">
         {!feedbacks || feedbacks.length === 0 ? (
-          <p className="text-sm text-zinc-400">Aucun feedback pour le moment.</p>
+          <p className="text-sm text-ink-400">Aucun feedback pour le moment.</p>
         ) : (
           feedbacks.map((fb) => (
             <div
               key={fb.id}
-              className={`rounded-2xl border p-6 ${fb.lu ? "border-zinc-200 bg-white" : "border-violet-200 bg-violet-50"}`}
+              className={`rounded-2xl border p-6 ${fb.lu ? "border-ink-200 bg-white" : "border-brand-200 bg-brand-50"}`}
             >
               <div className="flex items-start justify-between gap-4">
-                <p className="text-sm text-zinc-700">{fb.message}</p>
+                <p className="text-sm text-ink-700">{fb.message}</p>
                 {!fb.lu && <BoutonMarquerLu feedbackId={fb.id} />}
               </div>
-              <p className="mt-3 text-xs text-zinc-400">
+              <p className="mt-3 text-xs text-ink-400">
                 {new Date(fb.created_at).toLocaleDateString("fr-FR", {
                   day: "numeric",
                   month: "long",

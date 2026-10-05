@@ -1,8 +1,8 @@
-# Venus
+# Starnote
 
-Venus aide les commerces de proximité à transformer leurs clients satisfaits en avis Google,
+Starnote aide les commerces de proximité à transformer leurs clients satisfaits en avis Google,
 via un questionnaire guidé par IA. Chaque entreprise cliente a sa propre page
-(`venus.app/nom-entreprise`), créée automatiquement après paiement Stripe.
+(`getstarnote.com/nom-entreprise`), créée automatiquement après paiement Stripe.
 
 ## Stack
 
@@ -58,3 +58,12 @@ questionnaire et la génération d'avis immédiatement.
 3. Ajouter le domaine de production dans `NEXT_PUBLIC_SITE_URL` et dans les URLs de succès/
    annulation Stripe (déjà dynamiques via cette variable).
 4. Mettre à jour l'endpoint webhook Stripe avec l'URL de production.
+
+## Identité visuelle
+
+- **Logo** : composant `src/components/brand/Logo.tsx` (le « e » final porte une étoile en accent :
+  « starnoté »). Symbole et icône d'app en SVG dans `public/brand/`, favicon dans `src/app/icon.svg`.
+- **Couleurs** (définies dans `src/app/globals.css`) : `ink-*` pour les neutres bleu nuit
+  (`ink-900` = #0B1B33), `brand-*` pour le bleu signal (`brand-600` = #2F5597,
+  `brand-300` = lumière d'étoile #9DB8E3), `ink-100` = glacier #EEF2F7.
+- **Typo** : Schibsted Grotesk (via `next/font`).

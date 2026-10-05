@@ -149,7 +149,7 @@ export function Questionnaire({ entreprise, questions }: QuestionnaireProps) {
   }
 
   return (
-    <div className="w-full max-w-md overflow-hidden rounded-[1.75rem] border border-zinc-200 bg-white shadow-xl">
+    <div className="w-full max-w-md overflow-hidden rounded-[1.75rem] border border-ink-200 bg-white shadow-xl">
       <div
         className="flex items-center justify-between px-6 py-7 text-white"
         style={{ backgroundColor: entreprise.couleur_primaire }}
@@ -173,7 +173,7 @@ export function Questionnaire({ entreprise, questions }: QuestionnaireProps) {
 
       {phase === "questions" && questionActuelle && (
         <>
-          <div className="h-1 w-full bg-zinc-100">
+          <div className="h-1 w-full bg-ink-100">
             <div
               className="h-1 transition-all"
               style={{ width: `${progress}%`, backgroundColor: entreprise.couleur_primaire }}
@@ -192,19 +192,19 @@ export function Questionnaire({ entreprise, questions }: QuestionnaireProps) {
 
       {phase === "chargement" && (
         <div className="flex flex-col items-center gap-4 p-14 text-center">
-          <div className="h-8 w-8 animate-spin rounded-full border-2 border-zinc-200 border-t-zinc-900" />
-          <p className="text-sm text-zinc-500">{t.chargement}</p>
+          <div className="h-8 w-8 animate-spin rounded-full border-2 border-ink-200 border-t-ink-900" />
+          <p className="text-sm text-ink-500">{t.chargement}</p>
         </div>
       )}
 
       {phase === "avis" && (
         <div className="p-6">
-          <p className="mb-3 text-sm font-medium text-zinc-900">{t.avisTitre}</p>
+          <p className="mb-3 text-sm font-medium text-ink-900">{t.avisTitre}</p>
           <textarea
             value={avisGenere}
             onChange={(e) => setAvisGenere(e.target.value)}
             rows={6}
-            className="w-full resize-none rounded-xl border border-zinc-200 p-4 text-sm text-zinc-700 focus:border-zinc-400 focus:outline-none"
+            className="w-full resize-none rounded-xl border border-ink-200 p-4 text-sm text-ink-700 focus:border-ink-400 focus:outline-none"
           />
           <button
             onClick={copierEtOuvrirGoogle}
@@ -218,14 +218,14 @@ export function Questionnaire({ entreprise, questions }: QuestionnaireProps) {
 
       {phase === "feedback" && (
         <div className="p-6">
-          <p className="text-base font-semibold text-zinc-900">{t.feedbackTitre}</p>
-          <p className="mt-1 text-sm text-zinc-500">{t.feedbackSousTitre}</p>
+          <p className="text-base font-semibold text-ink-900">{t.feedbackTitre}</p>
+          <p className="mt-1 text-sm text-ink-500">{t.feedbackSousTitre}</p>
           <textarea
             value={feedbackMessage}
             onChange={(e) => setFeedbackMessage(e.target.value)}
             rows={5}
             placeholder={t.feedbackPlaceholder}
-            className="mt-4 w-full resize-none rounded-xl border border-zinc-200 p-4 text-sm text-zinc-700 focus:border-zinc-400 focus:outline-none"
+            className="mt-4 w-full resize-none rounded-xl border border-ink-200 p-4 text-sm text-ink-700 focus:border-ink-400 focus:outline-none"
           />
           <button
             onClick={envoyerFeedback}
@@ -240,15 +240,15 @@ export function Questionnaire({ entreprise, questions }: QuestionnaireProps) {
 
       {phase === "merci" && (
         <div className="p-10 text-center">
-          <p className="text-lg font-semibold text-zinc-900">{t.merciTitreGoogle}</p>
-          <p className="mt-2 text-sm text-zinc-500">{t.merciTexteGoogle}</p>
+          <p className="text-lg font-semibold text-ink-900">{t.merciTitreGoogle}</p>
+          <p className="mt-2 text-sm text-ink-500">{t.merciTexteGoogle}</p>
         </div>
       )}
 
       {phase === "feedback_envoye" && (
         <div className="p-10 text-center">
-          <p className="text-lg font-semibold text-zinc-900">{t.merciTitreFeedback}</p>
-          <p className="mt-2 text-sm text-zinc-500">{t.merciTexteFeedback}</p>
+          <p className="text-lg font-semibold text-ink-900">{t.merciTitreFeedback}</p>
+          <p className="mt-2 text-sm text-ink-500">{t.merciTexteFeedback}</p>
         </div>
       )}
     </div>
@@ -274,13 +274,13 @@ function EtapeQuestion({
   if (question.type === "choix_unique") {
     return (
       <div>
-        <h2 className="text-lg font-semibold text-zinc-900">{question.texte}</h2>
+        <h2 className="text-lg font-semibold text-ink-900">{question.texte}</h2>
         <div className="mt-5 space-y-3">
           {(question.options || []).map((option) => (
             <button
               key={option}
               onClick={() => onRepondre(option)}
-              className="w-full rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 text-left text-sm text-zinc-700 transition-colors hover:border-zinc-300 hover:bg-zinc-100"
+              className="w-full rounded-xl border border-ink-200 bg-ink-50 px-4 py-3 text-left text-sm text-ink-700 transition-colors hover:border-ink-300 hover:bg-ink-100"
             >
               {option}
             </button>
@@ -293,8 +293,8 @@ function EtapeQuestion({
   if (question.type === "choix_multiple") {
     return (
       <div>
-        <h2 className="text-lg font-semibold text-zinc-900">{question.texte}</h2>
-        <p className="mt-1 text-xs text-zinc-400">{texte.plusieursChoix}</p>
+        <h2 className="text-lg font-semibold text-ink-900">{question.texte}</h2>
+        <p className="mt-1 text-xs text-ink-400">{texte.plusieursChoix}</p>
         <div className="mt-5 space-y-3">
           {(question.options || []).map((option) => {
             const selectionne = selectionMultiple.includes(option);
@@ -308,8 +308,8 @@ function EtapeQuestion({
                 }
                 className={`w-full rounded-xl border px-4 py-3 text-left text-sm transition-colors ${
                   selectionne
-                    ? "border-zinc-900 bg-zinc-900 text-white"
-                    : "border-zinc-200 bg-zinc-50 text-zinc-700 hover:border-zinc-300"
+                    ? "border-ink-900 bg-ink-900 text-white"
+                    : "border-ink-200 bg-ink-50 text-ink-700 hover:border-ink-300"
                 }`}
               >
                 {option}
@@ -320,7 +320,7 @@ function EtapeQuestion({
         <button
           onClick={() => onRepondre(selectionMultiple)}
           disabled={selectionMultiple.length === 0}
-          className="mt-5 flex h-11 w-full items-center justify-center rounded-full bg-zinc-900 text-sm font-semibold text-white disabled:opacity-30"
+          className="mt-5 flex h-11 w-full items-center justify-center rounded-full bg-ink-900 text-sm font-semibold text-white disabled:opacity-30"
         >
           {texte.suivant}
         </button>
@@ -331,19 +331,19 @@ function EtapeQuestion({
   if (question.type === "note") {
     return (
       <div>
-        <h2 className="text-lg font-semibold text-zinc-900">{question.texte}</h2>
+        <h2 className="text-lg font-semibold text-ink-900">{question.texte}</h2>
         <div className="mt-6 flex justify-between gap-2">
           {[1, 2, 3, 4, 5].map((n) => (
             <button
               key={n}
               onClick={() => onRepondre(String(n))}
-              className="flex h-12 flex-1 items-center justify-center rounded-xl border border-zinc-200 text-base font-semibold text-zinc-700 hover:border-zinc-900 hover:bg-zinc-900 hover:text-white"
+              className="flex h-12 flex-1 items-center justify-center rounded-xl border border-ink-200 text-base font-semibold text-ink-700 hover:border-ink-900 hover:bg-ink-900 hover:text-white"
             >
               {n}
             </button>
           ))}
         </div>
-        <div className="mt-2 flex justify-between text-xs text-zinc-400">
+        <div className="mt-2 flex justify-between text-xs text-ink-400">
           <span>{texte.note1}</span>
           <span>{texte.note5}</span>
         </div>
@@ -353,18 +353,18 @@ function EtapeQuestion({
 
   return (
     <div>
-      <h2 className="text-lg font-semibold text-zinc-900">{question.texte}</h2>
-      <p className="mt-1 text-xs text-zinc-400">{texte.facultatif}</p>
+      <h2 className="text-lg font-semibold text-ink-900">{question.texte}</h2>
+      <p className="mt-1 text-xs text-ink-400">{texte.facultatif}</p>
       <textarea
         value={texteLibre}
         onChange={(e) => setTexteLibre(e.target.value)}
         rows={4}
         placeholder={texte.champTexte}
-        className="mt-5 w-full resize-none rounded-xl border border-zinc-200 p-4 text-sm text-zinc-700 focus:border-zinc-400 focus:outline-none"
+        className="mt-5 w-full resize-none rounded-xl border border-ink-200 p-4 text-sm text-ink-700 focus:border-ink-400 focus:outline-none"
       />
       <button
         onClick={() => onRepondre(texteLibre)}
-        className="mt-4 flex h-11 w-full items-center justify-center rounded-full bg-zinc-900 text-sm font-semibold text-white"
+        className="mt-4 flex h-11 w-full items-center justify-center rounded-full bg-ink-900 text-sm font-semibold text-white"
       >
         {texte.suivant}
       </button>

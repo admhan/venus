@@ -1,5 +1,6 @@
 "use client";
 
+import { Logo } from "@/components/brand/Logo";
 import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { slugifier } from "@/lib/slug";
@@ -67,19 +68,20 @@ function FormulaireInscription() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 px-4 py-16">
-      <div className="w-full max-w-md rounded-2xl border border-zinc-200 bg-white p-8 shadow-sm">
-        <h1 className="text-xl font-semibold text-zinc-900">Créer votre page Venus</h1>
-        <p className="mt-1 text-sm text-zinc-500">
+    <div className="flex min-h-screen items-center justify-center bg-ink-50 px-4 py-16">
+      <div className="w-full max-w-md rounded-2xl border border-ink-200 bg-white p-8 shadow-sm">
+        <Logo symbole className="mb-6 text-xl" />
+        <h1 className="text-xl font-semibold text-ink-900">Créer votre page Starnote</h1>
+        <p className="mt-1 text-sm text-ink-500">
           {periodicite === "annuel" ? "600€/an" : "60€/mois"} TTC, sans engagement.
         </p>
 
-        <div className="mt-4 flex rounded-full border border-zinc-200 bg-zinc-100 p-1 text-sm font-medium">
+        <div className="mt-4 flex rounded-full border border-ink-200 bg-ink-100 p-1 text-sm font-medium">
           <button
             type="button"
             onClick={() => setPeriodicite("mensuel")}
             className={`flex-1 rounded-full py-2 transition-colors ${
-              periodicite === "mensuel" ? "bg-white text-zinc-900 shadow-sm" : "text-zinc-500"
+              periodicite === "mensuel" ? "bg-white text-ink-900 shadow-sm" : "text-ink-500"
             }`}
           >
             Mensuel — 60€/mois
@@ -88,7 +90,7 @@ function FormulaireInscription() {
             type="button"
             onClick={() => setPeriodicite("annuel")}
             className={`flex-1 rounded-full py-2 transition-colors ${
-              periodicite === "annuel" ? "bg-white text-zinc-900 shadow-sm" : "text-zinc-500"
+              periodicite === "annuel" ? "bg-white text-ink-900 shadow-sm" : "text-ink-500"
             }`}
           >
             Annuel — 600€/an
@@ -97,20 +99,20 @@ function FormulaireInscription() {
 
         <form onSubmit={demarrerPaiement} className="mt-6 space-y-4">
           <div>
-            <label className="text-sm font-medium text-zinc-700">Nom de l&apos;établissement</label>
+            <label className="text-sm font-medium text-ink-700">Nom de l&apos;établissement</label>
             <input
               required
               value={nom}
               onChange={(e) => setNom(e.target.value)}
               placeholder="Finest Lash Studio"
-              className="mt-1.5 w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm focus:border-zinc-400 focus:outline-none"
+              className="mt-1.5 w-full rounded-xl border border-ink-200 px-4 py-2.5 text-sm focus:border-ink-400 focus:outline-none"
             />
           </div>
 
           <div>
-            <label className="text-sm font-medium text-zinc-700">Adresse de votre page</label>
-            <div className="mt-1.5 flex items-center rounded-xl border border-zinc-200 px-4 py-2.5 text-sm">
-              <span className="text-zinc-400">venus.app/</span>
+            <label className="text-sm font-medium text-ink-700">Adresse de votre page</label>
+            <div className="mt-1.5 flex items-center rounded-xl border border-ink-200 px-4 py-2.5 text-sm">
+              <span className="text-ink-400">getstarnote.com/</span>
               <input
                 required
                 value={slug}
@@ -127,16 +129,16 @@ function FormulaireInscription() {
           </div>
 
           <div>
-            <label className="text-sm font-medium text-zinc-700">E-mail professionnel</label>
+            <label className="text-sm font-medium text-ink-700">E-mail professionnel</label>
             <input
               required
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="vous@entreprise.fr"
-              className="mt-1.5 w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm focus:border-zinc-400 focus:outline-none"
+              className="mt-1.5 w-full rounded-xl border border-ink-200 px-4 py-2.5 text-sm focus:border-ink-400 focus:outline-none"
             />
-            <p className="mt-1 text-xs text-zinc-400">
+            <p className="mt-1 text-xs text-ink-400">
               Vous recevrez un lien de connexion à votre tableau de bord à cette adresse après paiement.
             </p>
           </div>
@@ -146,7 +148,7 @@ function FormulaireInscription() {
           <button
             type="submit"
             disabled={chargement || disponible === false}
-            className="flex h-12 w-full items-center justify-center rounded-full bg-zinc-900 text-sm font-semibold text-white disabled:opacity-50"
+            className="flex h-12 w-full items-center justify-center rounded-full bg-ink-900 text-sm font-semibold text-white disabled:opacity-50"
           >
             {chargement ? "Redirection vers le paiement…" : "Continuer vers le paiement"}
           </button>

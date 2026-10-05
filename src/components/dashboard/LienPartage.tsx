@@ -12,11 +12,11 @@ export function LienPartage({ lien }: { lien: string }) {
   }
 
   return (
-    <div className="flex items-center gap-2 rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3">
-      <code className="flex-1 truncate text-sm text-zinc-700">{lien}</code>
+    <div className="flex items-center gap-2 rounded-xl border border-ink-200 bg-ink-50 px-4 py-3">
+      <code className="flex-1 truncate text-sm text-ink-700">{lien}</code>
       <button
         onClick={copier}
-        className="rounded-full bg-zinc-900 px-4 py-1.5 text-xs font-semibold text-white"
+        className="rounded-full bg-ink-900 px-4 py-1.5 text-xs font-semibold text-white"
       >
         {copie ? "Copié !" : "Copier"}
       </button>

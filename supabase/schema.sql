@@ -1,16 +1,16 @@
--- Schéma Venus — collecte d'avis clients assistée par IA
+-- Schéma Starnote — collecte d'avis clients assistée par IA
 -- À exécuter dans l'éditeur SQL Supabase (ou via `supabase db push`)
 
 create extension if not exists "pgcrypto";
 
--- Une entreprise cliente de Venus (ex: Finest Lash Studio)
+-- Une entreprise cliente de Starnote (ex: Finest Lash Studio)
 create table entreprises (
   id uuid primary key default gen_random_uuid(),
   user_id uuid references auth.users (id) on delete set null,
   slug text unique not null,
   nom text not null,
   logo_url text,
-  couleur_primaire text not null default '#111111',
+  couleur_primaire text not null default '#0B1B33',
   google_review_url text,
   email_contact text not null,
   stripe_customer_id text,

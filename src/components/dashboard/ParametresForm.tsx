@@ -31,53 +31,53 @@ export function ParametresForm({ entreprise }: { entreprise: Entreprise }) {
   return (
     <form onSubmit={enregistrer} className="max-w-xl space-y-6">
       <div>
-        <label className="text-sm font-medium text-zinc-700">Nom de l&apos;établissement</label>
+        <label className="text-sm font-medium text-ink-700">Nom de l&apos;établissement</label>
         <input
           value={nom}
           onChange={(e) => setNom(e.target.value)}
-          className="mt-1.5 w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm"
+          className="mt-1.5 w-full rounded-xl border border-ink-200 px-4 py-2.5 text-sm"
         />
       </div>
 
       <div>
-        <label className="text-sm font-medium text-zinc-700">Couleur de marque</label>
+        <label className="text-sm font-medium text-ink-700">Couleur de marque</label>
         <div className="mt-1.5 flex items-center gap-3">
           <input
             type="color"
             value={couleur}
             onChange={(e) => setCouleur(e.target.value)}
-            className="h-10 w-14 rounded-lg border border-zinc-200"
+            className="h-10 w-14 rounded-lg border border-ink-200"
           />
           <input
             value={couleur}
             onChange={(e) => setCouleur(e.target.value)}
-            className="flex-1 rounded-xl border border-zinc-200 px-4 py-2.5 text-sm"
+            className="flex-1 rounded-xl border border-ink-200 px-4 py-2.5 text-sm"
           />
         </div>
       </div>
 
       <div>
-        <label className="text-sm font-medium text-zinc-700">Lien direct vers votre fiche d&apos;avis Google</label>
+        <label className="text-sm font-medium text-ink-700">Lien direct vers votre fiche d&apos;avis Google</label>
         <input
           value={googleUrl}
           onChange={(e) => setGoogleUrl(e.target.value)}
           placeholder="https://g.page/r/..."
-          className="mt-1.5 w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm"
+          className="mt-1.5 w-full rounded-xl border border-ink-200 px-4 py-2.5 text-sm"
         />
       </div>
 
       <div>
-        <label className="text-sm font-medium text-zinc-700">E-mail de contact</label>
+        <label className="text-sm font-medium text-ink-700">E-mail de contact</label>
         <input
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="mt-1.5 w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm"
+          className="mt-1.5 w-full rounded-xl border border-ink-200 px-4 py-2.5 text-sm"
         />
       </div>
 
       <div>
-        <label className="text-sm font-medium text-zinc-700">
+        <label className="text-sm font-medium text-ink-700">
           Note minimale pour orienter vers Google ({seuil}/5)
         </label>
         <input
@@ -88,7 +88,7 @@ export function ParametresForm({ entreprise }: { entreprise: Entreprise }) {
           onChange={(e) => setSeuil(Number(e.target.value))}
           className="mt-1.5 w-full"
         />
-        <p className="mt-1 text-xs text-zinc-400">
+        <p className="mt-1 text-xs text-ink-400">
           En dessous de cette note, le client est orienté vers le feedback privé plutôt que vers Google.
         </p>
       </div>
@@ -96,7 +96,7 @@ export function ParametresForm({ entreprise }: { entreprise: Entreprise }) {
       <button
         type="submit"
         disabled={isPending}
-        className="rounded-full bg-zinc-900 px-6 py-2.5 text-sm font-semibold text-white disabled:opacity-50"
+        className="rounded-full bg-ink-900 px-6 py-2.5 text-sm font-semibold text-white disabled:opacity-50"
       >
         {isPending ? "Enregistrement…" : sauvegarde ? "Enregistré ✓" : "Enregistrer"}
       </button>

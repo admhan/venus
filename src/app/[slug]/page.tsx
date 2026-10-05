@@ -42,7 +42,7 @@ export default async function PageEntreprise({ params }: PageProps) {
   if (!donnees) notFound();
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-zinc-100 px-4 py-10">
+    <div className="flex min-h-screen flex-col items-center justify-center bg-ink-100 px-4 py-10">
       <Questionnaire entreprise={donnees.entreprise} questions={donnees.questions} />
     </div>
   );
