@@ -22,6 +22,7 @@ function FormulaireInscription() {
   const [nom, setNom] = useState("");
   const [slugManuel, setSlugManuel] = useState<string | null>(null);
   const [email, setEmail] = useState("");
+  const [googleReviewUrl, setGoogleReviewUrl] = useState("");
   const [periodicite, setPeriodicite] = useState<Periodicite>(periodiciteInitiale);
   const [disponible, setDisponible] = useState<boolean | null>(null);
   const [chargement, setChargement] = useState(false);
@@ -49,7 +50,7 @@ function FormulaireInscription() {
       const res = await fetch("/api/stripe/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ nom, slug, email, periodicite }),
+        body: JSON.stringify({ nom, slug, email, periodicite, googleReviewUrl }),
       });
       const data = await res.json();
 
@@ -105,6 +106,22 @@ function FormulaireInscription() {
               placeholder="Finest Lash Studio"
               className="mt-1.5 w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm focus:border-zinc-400 focus:outline-none"
             />
+          </div>
+
+          <div>
+            <label className="text-sm font-medium text-zinc-700">Lien direct vers votre fiche d&apos;avis Google</label>
+            <input
+              required
+              value={googleReviewUrl}
+              onChange={(e) => setGoogleReviewUrl(e.target.value)}
+              placeholder="https://g.page/r/.../review"
+              className="mt-1.5 w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm focus:border-zinc-400 focus:outline-none"
+            />
+            <p className="mt-1 text-xs text-zinc-400">
+              Sur Google Maps : votre fiche → <span className="font-medium">Partager</span> →{" "}
+              <span className="font-medium">Demander des avis</span>. Ce lien ouvre directement la fenêtre
+              de rédaction d&apos;avis pour vos clients, sans étape intermédiaire.
+            </p>
           </div>
 
           <div>

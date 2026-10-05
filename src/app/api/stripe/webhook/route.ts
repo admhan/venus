@@ -38,7 +38,7 @@ async function provisionnerEntreprise(session: Stripe.Checkout.Session) {
     return;
   }
 
-  const { nom, slug, email } = session.metadata || {};
+  const { nom, slug, email, googleReviewUrl } = session.metadata || {};
   if (!nom || !slug || !email) {
     console.error("Webhook Stripe: métadonnées manquantes sur la session", session.id);
     return;
@@ -66,6 +66,7 @@ async function provisionnerEntreprise(session: Stripe.Checkout.Session) {
       slug,
       nom,
       email_contact: email,
+      google_review_url: googleReviewUrl || null,
       stripe_customer_id: String(session.customer ?? ""),
       stripe_subscription_id: String(session.subscription ?? ""),
       statut: "actif",
