@@ -44,21 +44,26 @@ export async function generateReview({
 
   const client = new GoogleGenAI({ apiKey });
 
-  const response = await client.models.generateContent({
-    model: modele,
-    contents: `Établissement : ${entrepriseNom}\n\nRéponses du client :\n${contexte}\n\nRédige l'avis Google.`,
-    config: {
-      temperature: 0.9,
-      maxOutputTokens: 220,
-      systemInstruction:
-        "Tu rédiges des avis Google à la première personne pour des clients d'établissements locaux. " +
-        "Le ton est naturel, chaleureux et spécifique à l'expérience décrite, jamais générique ni exagéré. " +
-        "3 à 5 phrases maximum. Jamais de formules toutes faites répétées d'un avis à l'autre. " +
-        `Réponds uniquement en ${langueCible}, sans guillemets ni préambule.`,
-    },
-  });
+  try {
+    const response = await client.models.generateContent({
+      model: modele,
+      contents: `Établissement : ${entrepriseNom}\n\nRéponses du client :\n${contexte}\n\nRédige l'avis Google.`,
+      config: {
+        temperature: 0.9,
+        maxOutputTokens: 220,
+        systemInstruction:
+          "Tu rédiges des avis Google à la première personne pour des clients d'établissements locaux. " +
+          "Le ton est naturel, chaleureux et spécifique à l'expérience décrite, jamais générique ni exagéré. " +
+          "3 à 5 phrases maximum. Jamais de formules toutes faites répétées d'un avis à l'autre. " +
+          `Réponds uniquement en ${langueCible}, sans guillemets ni préambule.`,
+      },
+    });
 
-  return response.text?.trim() || genererAvisDemo(entrepriseNom, contexte, langue);
+    return response.text?.trim() || genererAvisDemo(entrepriseNom, contexte, langue);
+  } catch (error) {
+    console.error("generateReview: appel Gemini échoué", error);
+    return genererAvisDemo(entrepriseNom, contexte, langue);
+  }
 }
 
 function genererAvisDemo(entrepriseNom: string, contexte: string, langue: string): string {

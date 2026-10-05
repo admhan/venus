@@ -40,7 +40,7 @@ export async function POST(request: Request) {
 
   if (isSupabaseConfigured() && entrepriseId !== "demo") {
     const supabase = createAdminClient();
-    const { data } = await supabase
+    const { data, error } = await supabase
       .from("avis_sessions")
       .insert({
         entreprise_id: entrepriseId,
@@ -53,6 +53,7 @@ export async function POST(request: Request) {
       .select("id")
       .single();
 
+    if (error) console.error("avis/generate: insertion session échouée", error.message);
     if (data) sessionId = data.id;
   }
 
