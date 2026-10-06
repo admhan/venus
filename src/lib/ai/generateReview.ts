@@ -21,14 +21,19 @@ function formatReponses(questions: Question[], reponses: Record<string, string |
     .join("\n");
 }
 
-// Modèle de repli si AI_MODEL est indisponible (Gemini renvoie régulièrement des 503
-// "high demand" sur les modèles flash récents) — évite de retomber sur l'avis gabarit
-// pour un simple pic de charge transitoire chez Google.
-const MODELE_REPLI = "gemini-flash-lite-latest";
+// gemini-3.8-flash est actuellement instable (503 "high demand" fréquents, et renvoie
+// parfois des réponses tronquées d'une seule phrase même quand il répond). En attendant
+// que Google stabilise ce modèle, on le relègue en second essai derrière flash-lite.
+const MODELE_REPLI = "gemini-3.8-flash";
+
+// Une réponse plus courte que ça n'a jamais respecté la consigne "3 à 5 phrases" du
+// prompt — on la traite comme un échec et on tente le modèle suivant plutôt que de
+// publier un avis tronqué.
+const LONGUEUR_MIN_AVIS = 60;
 
 /**
  * Génère un avis Google à partir des réponses d'un client.
- * Modèle interchangeable via AI_MODEL (défaut: gemini-3.8-flash, le moins cher chez Google).
+ * Modèle interchangeable via AI_MODEL (défaut: gemini-flash-lite-latest).
  * Sans clé API configurée (environnement de démo), retourne un avis gabarit.
  */
 export async function generateReview({
@@ -45,7 +50,7 @@ export async function generateReview({
   }
 
   const langueCible = langue === "en" ? "English" : "français";
-  const modele = process.env.AI_MODEL || "gemini-3.8-flash";
+  const modele = process.env.AI_MODEL || "gemini-flash-lite-latest";
   const client = new GoogleGenAI({ apiKey });
 
   const prompt = {
@@ -65,7 +70,8 @@ export async function generateReview({
     try {
       const response = await client.models.generateContent({ model: modeleEssaye, ...prompt });
       const texte = response.text?.trim();
-      if (texte) return texte;
+      if (texte && texte.length >= LONGUEUR_MIN_AVIS) return texte;
+      console.error(`generateReview: réponse trop courte de ${modeleEssaye}`, texte);
     } catch (error) {
       console.error(`generateReview: appel Gemini (${modeleEssaye}) échoué`, error);
     }
