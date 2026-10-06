@@ -12,6 +12,7 @@ const bodySchema = z.object({
   email: z.string().email(),
   periodicite: z.enum(["mensuel", "annuel"]),
   googleReviewUrl: z.string().url(),
+  userId: z.string().uuid(),
 });
 
 export async function POST(request: Request) {
@@ -28,7 +29,7 @@ export async function POST(request: Request) {
   }
 
   const slug = slugifier(parsed.data.slug);
-  const { nom, email, periodicite, googleReviewUrl } = parsed.data;
+  const { nom, email, periodicite, googleReviewUrl, userId } = parsed.data;
 
   if (isSupabaseConfigured()) {
     const supabase = createAdminClient();
@@ -55,7 +56,7 @@ export async function POST(request: Request) {
     mode: "subscription",
     customer_email: email,
     line_items: [{ price: getPriceId(periodicite), quantity: 1 }],
-    metadata: { nom, slug, email, periodicite, googleReviewUrl },
+    metadata: { nom, slug, email, periodicite, googleReviewUrl, userId },
     success_url: `${siteUrl}/inscription/succes?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${siteUrl}/inscription`,
   });

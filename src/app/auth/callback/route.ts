@@ -10,5 +10,8 @@ export async function GET(request: Request) {
     await supabase.auth.exchangeCodeForSession(code);
   }
 
-  return NextResponse.redirect(`${origin}/dashboard`);
+  const next = searchParams.get("next");
+  const destination = next && next.startsWith("/") ? next : "/dashboard";
+
+  return NextResponse.redirect(`${origin}${destination}`);
 }

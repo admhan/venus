@@ -3,6 +3,7 @@
 import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { slugifier } from "@/lib/slug";
+import { createClient } from "@/lib/supabase/client";
 
 type Periodicite = "mensuel" | "annuel";
 
@@ -22,6 +23,7 @@ function FormulaireInscription() {
   const [nom, setNom] = useState("");
   const [slugManuel, setSlugManuel] = useState<string | null>(null);
   const [email, setEmail] = useState("");
+  const [motDePasse, setMotDePasse] = useState("");
   const [googleReviewUrl, setGoogleReviewUrl] = useState("");
   const [periodicite, setPeriodicite] = useState<Periodicite>(periodiciteInitiale);
   const [disponible, setDisponible] = useState<boolean | null>(null);
@@ -46,11 +48,35 @@ function FormulaireInscription() {
     setChargement(true);
     setErreur(null);
 
+    const supabase = createClient();
+    const { data: inscriptionAuth, error: erreurAuth } = await supabase.auth.signUp({
+      email,
+      password: motDePasse,
+      options: { emailRedirectTo: `${window.location.origin}/auth/callback` },
+    });
+
+    if (erreurAuth || !inscriptionAuth.user) {
+      setErreur(
+        erreurAuth?.message === "User already registered"
+          ? "Un compte existe déjà avec cet e-mail. Connectez-vous plutôt depuis /connexion."
+          : erreurAuth?.message || "Impossible de créer votre compte."
+      );
+      setChargement(false);
+      return;
+    }
+
     try {
       const res = await fetch("/api/stripe/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ nom, slug, email, periodicite, googleReviewUrl }),
+        body: JSON.stringify({
+          nom,
+          slug,
+          email,
+          periodicite,
+          googleReviewUrl,
+          userId: inscriptionAuth.user.id,
+        }),
       });
       const data = await res.json();
 
@@ -154,7 +180,23 @@ function FormulaireInscription() {
               className="mt-1.5 w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm focus:border-zinc-400 focus:outline-none"
             />
             <p className="mt-1 text-xs text-zinc-400">
-              Vous recevrez un lien de connexion à votre tableau de bord à cette adresse après paiement.
+              Vous recevrez un e-mail de confirmation à cette adresse.
+            </p>
+          </div>
+
+          <div>
+            <label className="text-sm font-medium text-zinc-700">Mot de passe</label>
+            <input
+              required
+              type="password"
+              minLength={8}
+              value={motDePasse}
+              onChange={(e) => setMotDePasse(e.target.value)}
+              placeholder="8 caractères minimum"
+              className="mt-1.5 w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm focus:border-zinc-400 focus:outline-none"
+            />
+            <p className="mt-1 text-xs text-zinc-400">
+              Pour vous connecter à votre tableau de bord après paiement.
             </p>
           </div>
 

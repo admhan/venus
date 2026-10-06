@@ -2,7 +2,6 @@ import { NextResponse } from "next/server";
 import { getStripe } from "@/lib/stripe";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { isSupabaseConfigured } from "@/lib/supabase/is-configured";
-import { getSiteUrl } from "@/lib/site-url";
 import { QUESTIONS_GENERIQUES_INSTITUT_BEAUTE } from "@/lib/types/db";
 import type Stripe from "stripe";
 
@@ -38,8 +37,8 @@ async function provisionnerEntreprise(session: Stripe.Checkout.Session) {
     return;
   }
 
-  const { nom, slug, email, googleReviewUrl } = session.metadata || {};
-  if (!nom || !slug || !email) {
+  const { nom, slug, email, googleReviewUrl, userId } = session.metadata || {};
+  if (!nom || !slug || !email || !userId) {
     console.error("Webhook Stripe: métadonnées manquantes sur la session", session.id);
     return;
   }
@@ -54,15 +53,10 @@ async function provisionnerEntreprise(session: Stripe.Checkout.Session) {
   if (lookupError) throw new Error(`Lookup entreprise échoué: ${lookupError.message}`);
   if (entrepriseExistante) return;
 
-  const { data: invitation, error: inviteError } = await supabase.auth.admin.inviteUserByEmail(email, {
-    redirectTo: `${getSiteUrl()}/auth/callback`,
-  });
-  if (inviteError) console.error("Webhook Stripe: invitation échouée", inviteError.message);
-
   const { data: entreprise, error: insertError } = await supabase
     .from("entreprises")
     .insert({
-      user_id: invitation?.user?.id ?? null,
+      user_id: userId,
       slug,
       nom,
       email_contact: email,
