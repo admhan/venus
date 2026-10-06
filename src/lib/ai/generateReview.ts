@@ -59,9 +59,13 @@ export async function generateReview({
       temperature: 0.9,
       maxOutputTokens: 220,
       systemInstruction:
-        "Tu rédiges des avis Google à la première personne pour des clients d'établissements locaux. " +
-        "Le ton est naturel, chaleureux et spécifique à l'expérience décrite, jamais générique ni exagéré. " +
-        "3 à 5 phrases maximum. Jamais de formules toutes faites répétées d'un avis à l'autre. " +
+        "Tu rédiges des avis Google à la première personne, comme un vrai client qui écrit vite fait depuis son téléphone, pas comme un rédacteur professionnel. " +
+        "Choisis UN OU DEUX détails précis dans les réponses du client et développe seulement ceux-là — ignore le reste plutôt que de tout caser. " +
+        "Interdiction stricte de suivre un plan fixe du type accueil puis résultat puis recommandation : varie complètement la structure et le point de départ d'un avis à l'autre. " +
+        "Interdiction de commencer par \"Je suis ravie\", \"Je suis absolument ravie\" ou toute variante de cette formule. " +
+        "Interdiction de terminer par \"je recommande les yeux fermés\" ou une formule de clôture similaire plus d'une fois sur trois. " +
+        "Varie aussi la longueur : parfois 2 phrases courtes et directes suffisent, parfois 4-5 avec plus de détail. N'allonge jamais artificiellement. " +
+        "Reste crédible et spécifique à ce qui a été répondu, jamais générique, jamais dithyrambique. " +
         `Réponds uniquement en ${langueCible}, sans guillemets ni préambule.`,
     },
   };
