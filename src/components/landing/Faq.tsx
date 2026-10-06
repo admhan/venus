@@ -1,7 +1,7 @@
 const QUESTIONS = [
   {
     q: "Est-ce que les avis générés sont faux ?",
-    r: "Non. Chaque avis est rédigé à partir de réponses réellement données par un client qui a visité votre établissement, et il peut le modifier avant de le publier. Venus aide à la rédaction, pas à la fabrication d'avis.",
+    r: "Non. Chaque avis est rédigé à partir de réponses réellement données par un client qui a visité votre établissement, et il peut le modifier avant de le publier. Starnote aide à la rédaction, pas à la fabrication d'avis.",
   },
   {
     q: "Que se passe-t-il si un client n'est pas satisfait ?",
@@ -21,14 +21,14 @@ export function Faq() {
   return (
     <section id="faq" className="bg-zinc-50 py-24">
       <div className="mx-auto max-w-3xl px-6">
-        <h2 className="text-3xl font-semibold tracking-tight text-zinc-900 sm:text-4xl">
+        <h2 className="text-3xl font-bold tracking-tight text-nuit sm:text-4xl">
           Questions fréquentes
         </h2>
 
         <div className="mt-12 divide-y divide-zinc-200">
           {QUESTIONS.map((item) => (
             <div key={item.q} className="py-6">
-              <h3 className="text-base font-semibold text-zinc-900">{item.q}</h3>
+              <h3 className="text-base font-semibold text-nuit">{item.q}</h3>
               <p className="mt-2 text-sm leading-relaxed text-zinc-600">{item.r}</p>
             </div>
           ))}

@@ -62,7 +62,7 @@ export function QuestionsEditor({ questionsInitiales }: { questionsInitiales: Qu
                 value={question.texte}
                 onChange={(e) => mettreAJour(index, { texte: e.target.value })}
                 placeholder="Texte de la question"
-                className="flex-1 border-b border-transparent text-sm font-medium text-zinc-900 focus:border-zinc-300 focus:outline-none"
+                className="flex-1 border-b border-transparent text-sm font-medium text-nuit focus:border-zinc-300 focus:outline-none"
               />
               <div className="flex items-center gap-2">
                 <button onClick={() => deplacer(index, -1)} className="text-xs text-zinc-400 hover:text-zinc-700">
@@ -125,7 +125,7 @@ export function QuestionsEditor({ questionsInitiales }: { questionsInitiales: Qu
                       options: [...(question.options || []), `Option ${(question.options?.length || 0) + 1}`],
                     })
                   }
-                  className="text-xs font-medium text-violet-600 hover:text-violet-800"
+                  className="text-xs font-medium text-signal hover:text-nuit"
                 >
                   + Ajouter une option
                 </button>
@@ -145,7 +145,7 @@ export function QuestionsEditor({ questionsInitiales }: { questionsInitiales: Qu
         <button
           onClick={sauvegarderTout}
           disabled={isPending}
-          className="rounded-full bg-zinc-900 px-6 py-2 text-sm font-semibold text-white disabled:opacity-50"
+          className="rounded-full bg-nuit px-6 py-2 text-sm font-semibold text-white disabled:opacity-50"
         >
           {isPending ? "Enregistrement…" : sauvegarde ? "Enregistré ✓" : "Enregistrer"}
         </button>

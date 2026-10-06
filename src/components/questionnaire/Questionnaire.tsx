@@ -195,14 +195,14 @@ export function Questionnaire({ entreprise, questions }: QuestionnaireProps) {
 
       {phase === "chargement" && (
         <div className="flex flex-col items-center gap-4 p-14 text-center">
-          <div className="h-8 w-8 animate-spin rounded-full border-2 border-zinc-200 border-t-zinc-900" />
+          <div className="h-8 w-8 animate-spin rounded-full border-2 border-zinc-200 border-t-nuit" />
           <p className="text-sm text-zinc-500">{t.chargement}</p>
         </div>
       )}
 
       {phase === "avis" && (
         <div className="p-6">
-          <p className="mb-3 text-sm font-medium text-zinc-900">{t.avisTitre}</p>
+          <p className="mb-3 text-sm font-medium text-nuit">{t.avisTitre}</p>
           <textarea
             value={avisGenere}
             onChange={(e) => setAvisGenere(e.target.value)}
@@ -221,7 +221,7 @@ export function Questionnaire({ entreprise, questions }: QuestionnaireProps) {
 
       {phase === "feedback" && (
         <div className="p-6">
-          <p className="text-base font-semibold text-zinc-900">{t.feedbackTitre}</p>
+          <p className="text-base font-semibold text-nuit">{t.feedbackTitre}</p>
           <p className="mt-1 text-sm text-zinc-500">{t.feedbackSousTitre}</p>
           <textarea
             value={feedbackMessage}
@@ -243,17 +243,19 @@ export function Questionnaire({ entreprise, questions }: QuestionnaireProps) {
 
       {phase === "merci" && (
         <div className="p-10 text-center">
-          <p className="text-lg font-semibold text-zinc-900">{t.merciTitreGoogle}</p>
+          <p className="text-lg font-semibold text-nuit">{t.merciTitreGoogle}</p>
           <p className="mt-2 text-sm text-zinc-500">{t.merciTexteGoogle}</p>
         </div>
       )}
 
       {phase === "feedback_envoye" && (
         <div className="p-10 text-center">
-          <p className="text-lg font-semibold text-zinc-900">{t.merciTitreFeedback}</p>
+          <p className="text-lg font-semibold text-nuit">{t.merciTitreFeedback}</p>
           <p className="mt-2 text-sm text-zinc-500">{t.merciTexteFeedback}</p>
         </div>
       )}
+
+      <p className="pb-4 text-center text-[11px] text-zinc-400">propulsé par starnote</p>
     </div>
   );
 }
@@ -277,7 +279,7 @@ function EtapeQuestion({
   if (question.type === "choix_unique") {
     return (
       <div>
-        <h2 className="text-lg font-semibold text-zinc-900">{question.texte}</h2>
+        <h2 className="text-lg font-semibold text-nuit">{question.texte}</h2>
         <div className="mt-5 space-y-3">
           {(question.options || []).map((option) => (
             <button
@@ -296,7 +298,7 @@ function EtapeQuestion({
   if (question.type === "choix_multiple") {
     return (
       <div>
-        <h2 className="text-lg font-semibold text-zinc-900">{question.texte}</h2>
+        <h2 className="text-lg font-semibold text-nuit">{question.texte}</h2>
         <p className="mt-1 text-xs text-zinc-400">{texte.plusieursChoix}</p>
         <div className="mt-5 space-y-3">
           {(question.options || []).map((option) => {
@@ -311,7 +313,7 @@ function EtapeQuestion({
                 }
                 className={`w-full rounded-xl border px-4 py-3 text-left text-sm transition-colors ${
                   selectionne
-                    ? "border-zinc-900 bg-zinc-900 text-white"
+                    ? "border-nuit bg-nuit text-white"
                     : "border-zinc-200 bg-zinc-50 text-zinc-700 hover:border-zinc-300"
                 }`}
               >
@@ -323,7 +325,7 @@ function EtapeQuestion({
         <button
           onClick={() => onRepondre(selectionMultiple)}
           disabled={selectionMultiple.length === 0}
-          className="mt-5 flex h-11 w-full items-center justify-center rounded-full bg-zinc-900 text-sm font-semibold text-white disabled:opacity-30"
+          className="mt-5 flex h-11 w-full items-center justify-center rounded-full bg-nuit text-sm font-semibold text-white disabled:opacity-30"
         >
           {texte.suivant}
         </button>
@@ -334,13 +336,13 @@ function EtapeQuestion({
   if (question.type === "note") {
     return (
       <div>
-        <h2 className="text-lg font-semibold text-zinc-900">{question.texte}</h2>
+        <h2 className="text-lg font-semibold text-nuit">{question.texte}</h2>
         <div className="mt-6 flex justify-between gap-2">
           {[1, 2, 3, 4, 5].map((n) => (
             <button
               key={n}
               onClick={() => onRepondre(String(n))}
-              className="flex h-12 flex-1 items-center justify-center rounded-xl border border-zinc-200 text-base font-semibold text-zinc-700 hover:border-zinc-900 hover:bg-zinc-900 hover:text-white"
+              className="flex h-12 flex-1 items-center justify-center rounded-xl border border-zinc-200 text-base font-semibold text-zinc-700 hover:border-nuit hover:bg-nuit hover:text-white"
             >
               {n}
             </button>
@@ -356,7 +358,7 @@ function EtapeQuestion({
 
   return (
     <div>
-      <h2 className="text-lg font-semibold text-zinc-900">{question.texte}</h2>
+      <h2 className="text-lg font-semibold text-nuit">{question.texte}</h2>
       <p className="mt-1 text-xs text-zinc-400">{texte.facultatif}</p>
       <textarea
         value={texteLibre}
@@ -367,7 +369,7 @@ function EtapeQuestion({
       />
       <button
         onClick={() => onRepondre(texteLibre)}
-        className="mt-4 flex h-11 w-full items-center justify-center rounded-full bg-zinc-900 text-sm font-semibold text-white"
+        className="mt-4 flex h-11 w-full items-center justify-center rounded-full bg-nuit text-sm font-semibold text-white"
       >
         {texte.suivant}
       </button>

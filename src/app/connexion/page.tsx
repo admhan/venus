@@ -45,7 +45,7 @@ export default function PageConnexion() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-zinc-50 px-4">
       <div className="w-full max-w-sm rounded-2xl border border-zinc-200 bg-white p-8 shadow-sm">
-        <h1 className="text-xl font-semibold text-zinc-900">Connexion</h1>
+        <h1 className="text-xl font-semibold text-nuit">Connexion</h1>
         <p className="mt-1 text-sm text-zinc-500">
           Recevez un lien de connexion par e-mail, sans mot de passe.
         </p>
@@ -68,7 +68,7 @@ export default function PageConnexion() {
             <button
               type="submit"
               disabled={chargement}
-              className="flex h-11 w-full items-center justify-center rounded-full bg-zinc-900 text-sm font-semibold text-white disabled:opacity-50"
+              className="flex h-11 w-full items-center justify-center rounded-full bg-nuit text-sm font-semibold text-white disabled:opacity-50"
             >
               {chargement ? "Envoi…" : "Recevoir le lien"}
             </button>

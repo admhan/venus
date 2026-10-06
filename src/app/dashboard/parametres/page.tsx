@@ -19,7 +19,7 @@ export default async function PageParametres() {
 
   return (
     <div>
-      <h1 className="text-2xl font-semibold text-zinc-900">Paramètres</h1>
+      <h1 className="text-2xl font-semibold text-nuit">Paramètres</h1>
       <p className="mt-1 text-sm text-zinc-500">Branding et comportement de votre page.</p>
 
       <div className="mt-8">

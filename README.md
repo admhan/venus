@@ -1,15 +1,15 @@
-# Venus
+# Starnote
 
-Venus aide les commerces de proximité à transformer leurs clients satisfaits en avis Google,
+Starnote aide les commerces de proximité à transformer leurs clients satisfaits en avis Google,
 via un questionnaire guidé par IA. Chaque entreprise cliente a sa propre page
-(`venus.app/nom-entreprise`), créée automatiquement après paiement Stripe.
+(`getstarnote.com/nom-entreprise`), créée automatiquement après paiement Stripe.
 
 ## Stack
 
 - [Next.js](https://nextjs.org) (App Router, TypeScript, Tailwind)
 - [Supabase](https://supabase.com) — base de données Postgres + authentification
 - [Stripe](https://stripe.com) — abonnement par établissement
-- Gemini (`gemini-3.8-flash` par défaut) — génération des avis, le moins cher du marché
+- Gemini (`gemini-flash-lite-latest` par défaut) — génération des avis
 
 ## Démarrer en local
 
@@ -33,7 +33,8 @@ questionnaire et la génération d'avis immédiatement.
 3. **Gemini** : créer une clé API sur [aistudio.google.com](https://aistudio.google.com/apikey) et la
    renseigner dans `GEMINI_API_KEY`. Sans clé, les avis générés utilisent un gabarit de démo.
 4. **Stripe** :
-   - Créer un produit avec un prix récurrent mensuel, copier son ID dans `STRIPE_PRICE_ID`.
+   - Créer un produit avec un prix récurrent mensuel et un prix récurrent annuel, copier leurs
+     ID dans `STRIPE_PRICE_ID_MENSUEL` et `STRIPE_PRICE_ID_ANNUEL`.
    - Copier la clé secrète dans `STRIPE_SECRET_KEY`.
    - En local, utiliser le [Stripe CLI](https://stripe.com/docs/stripe-cli) :
      `stripe listen --forward-to localhost:3000/api/stripe/webhook` et copier le secret affiché
@@ -52,7 +53,7 @@ questionnaire et la génération d'avis immédiatement.
 
 ## Déploiement (Vercel)
 
-1. Pousser le repo sur GitHub (déjà fait : `admhan/venus`).
+1. Pousser le repo sur GitHub (déjà fait : `admhan/venus`, à renommer si besoin).
 2. Importer le projet sur [Vercel](https://vercel.com/new), renseigner les variables
    d'environnement de `.env.example`.
 3. Ajouter le domaine de production dans `NEXT_PUBLIC_SITE_URL` et dans les URLs de succès/

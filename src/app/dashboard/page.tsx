@@ -23,7 +23,7 @@ export default async function PageVueEnsemble() {
   const lien = `${getSiteUrl()}/${entreprise!.slug}`;
   const qrCodeDataUrl = await QRCode.toDataURL(lien, {
     margin: 1,
-    color: { dark: "#18181b", light: "#ffffff" },
+    color: { dark: "#0b1b33", light: "#ffffff" },
   });
 
   const { count: totalSessions } = await supabase
@@ -45,7 +45,7 @@ export default async function PageVueEnsemble() {
 
   return (
     <div className="max-w-3xl">
-      <h1 className="text-2xl font-semibold text-zinc-900">Vue d&apos;ensemble</h1>
+      <h1 className="text-2xl font-semibold text-nuit">Vue d&apos;ensemble</h1>
 
       {!entreprise!.google_review_url && (
         <div className="mt-6 flex items-start justify-between gap-4 rounded-2xl border border-amber-200 bg-amber-50 p-5">
@@ -74,7 +74,7 @@ export default async function PageVueEnsemble() {
       </div>
 
       <div className="mt-10 rounded-2xl border border-zinc-200 bg-white p-8">
-        <h2 className="text-base font-semibold text-zinc-900">Partager le questionnaire</h2>
+        <h2 className="text-base font-semibold text-nuit">Partager le questionnaire</h2>
         <p className="mt-1 text-sm text-zinc-500">
           Affichez le QR code en caisse, ou partagez le lien par SMS après chaque visite.
         </p>
@@ -94,7 +94,7 @@ export default async function PageVueEnsemble() {
 function StatCard({ label, valeur }: { label: string; valeur: number }) {
   return (
     <div className="rounded-2xl border border-zinc-200 bg-white p-6">
-      <p className="text-3xl font-semibold text-zinc-900">{valeur}</p>
+      <p className="text-3xl font-semibold text-nuit">{valeur}</p>
       <p className="mt-1 text-sm text-zinc-500">{label}</p>
     </div>
   );

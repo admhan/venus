@@ -104,7 +104,7 @@ export function ParametresForm({ entreprise }: { entreprise: Entreprise }) {
       <button
         type="submit"
         disabled={isPending}
-        className="rounded-full bg-zinc-900 px-6 py-2.5 text-sm font-semibold text-white disabled:opacity-50"
+        className="rounded-full bg-nuit px-6 py-2.5 text-sm font-semibold text-white disabled:opacity-50"
       >
         {isPending ? "Enregistrement…" : sauvegarde ? "Enregistré ✓" : "Enregistrer"}
       </button>

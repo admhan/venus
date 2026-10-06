@@ -30,7 +30,7 @@ export default async function PageQuestions() {
 
   return (
     <div className="max-w-2xl">
-      <h1 className="text-2xl font-semibold text-zinc-900">Questions</h1>
+      <h1 className="text-2xl font-semibold text-nuit">Questions</h1>
       <p className="mt-1 text-sm text-zinc-500">
         Ces questions sont posées à vos clients, dans l&apos;ordre, juste après leur visite.
       </p>

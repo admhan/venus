@@ -26,11 +26,11 @@ export function Trust() {
     <section className="bg-zinc-50 py-24">
       <div className="mx-auto max-w-6xl px-6">
         <div className="max-w-2xl">
-          <h2 className="text-3xl font-semibold tracking-tight text-zinc-900 sm:text-4xl">
+          <h2 className="text-3xl font-bold tracking-tight text-nuit sm:text-4xl">
             Pensé pour durer, pas pour tricher
           </h2>
           <p className="mt-4 text-lg text-zinc-600">
-            Beaucoup d&apos;outils similaires jouent avec les limites des règles Google. Venus est
+            Beaucoup d&apos;outils similaires jouent avec les limites des règles Google. Starnote est
             construit pour rester dans les clous, sur le long terme.
           </p>
         </div>
@@ -38,7 +38,7 @@ export function Trust() {
         <div className="mt-16 grid gap-8 sm:grid-cols-2">
           {POINTS.map((point) => (
             <div key={point.titre} className="rounded-2xl border border-zinc-200 bg-white p-8">
-              <h3 className="text-lg font-semibold text-zinc-900">{point.titre}</h3>
+              <h3 className="text-lg font-semibold text-nuit">{point.titre}</h3>
               <p className="mt-3 text-sm leading-relaxed text-zinc-600">{point.description}</p>
             </div>
           ))}

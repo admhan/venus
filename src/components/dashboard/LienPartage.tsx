@@ -16,7 +16,7 @@ export function LienPartage({ lien }: { lien: string }) {
       <code className="flex-1 truncate text-sm text-zinc-700">{lien}</code>
       <button
         onClick={copier}
-        className="rounded-full bg-zinc-900 px-4 py-1.5 text-xs font-semibold text-white"
+        className="rounded-full bg-nuit px-4 py-1.5 text-xs font-semibold text-white"
       >
         {copie ? "Copié !" : "Copier"}
       </button>

@@ -24,7 +24,7 @@ export default async function PageFeedback() {
 
   return (
     <div className="max-w-2xl">
-      <h1 className="text-2xl font-semibold text-zinc-900">Feedback privé</h1>
+      <h1 className="text-2xl font-semibold text-nuit">Feedback privé</h1>
       <p className="mt-1 text-sm text-zinc-500">
         Les retours des clients insatisfaits, envoyés uniquement à vous, jamais sur Google.
       </p>
@@ -36,7 +36,7 @@ export default async function PageFeedback() {
           feedbacks.map((fb) => (
             <div
               key={fb.id}
-              className={`rounded-2xl border p-6 ${fb.lu ? "border-zinc-200 bg-white" : "border-violet-200 bg-violet-50"}`}
+              className={`rounded-2xl border p-6 ${fb.lu ? "border-zinc-200 bg-white" : "border-etoile bg-glacier"}`}
             >
               <div className="flex items-start justify-between gap-4">
                 <p className="text-sm text-zinc-700">{fb.message}</p>

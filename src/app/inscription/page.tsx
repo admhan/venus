@@ -70,7 +70,7 @@ function FormulaireInscription() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-zinc-50 px-4 py-16">
       <div className="w-full max-w-md rounded-2xl border border-zinc-200 bg-white p-8 shadow-sm">
-        <h1 className="text-xl font-semibold text-zinc-900">Créer votre page Venus</h1>
+        <h1 className="text-xl font-bold text-nuit">Créer votre page Starnote</h1>
         <p className="mt-1 text-sm text-zinc-500">
           {periodicite === "annuel" ? "600€/an" : "60€/mois"} TTC, sans engagement.
         </p>
@@ -80,7 +80,7 @@ function FormulaireInscription() {
             type="button"
             onClick={() => setPeriodicite("mensuel")}
             className={`flex-1 rounded-full py-2 transition-colors ${
-              periodicite === "mensuel" ? "bg-white text-zinc-900 shadow-sm" : "text-zinc-500"
+              periodicite === "mensuel" ? "bg-white text-nuit shadow-sm" : "text-zinc-500"
             }`}
           >
             Mensuel — 60€/mois
@@ -89,7 +89,7 @@ function FormulaireInscription() {
             type="button"
             onClick={() => setPeriodicite("annuel")}
             className={`flex-1 rounded-full py-2 transition-colors ${
-              periodicite === "annuel" ? "bg-white text-zinc-900 shadow-sm" : "text-zinc-500"
+              periodicite === "annuel" ? "bg-white text-nuit shadow-sm" : "text-zinc-500"
             }`}
           >
             Annuel — 600€/an
@@ -127,7 +127,7 @@ function FormulaireInscription() {
           <div>
             <label className="text-sm font-medium text-zinc-700">Adresse de votre page</label>
             <div className="mt-1.5 flex items-center rounded-xl border border-zinc-200 px-4 py-2.5 text-sm">
-              <span className="text-zinc-400">venus.app/</span>
+              <span className="text-zinc-400">getstarnote.com/</span>
               <input
                 required
                 value={slug}
@@ -163,7 +163,7 @@ function FormulaireInscription() {
           <button
             type="submit"
             disabled={chargement || disponible === false}
-            className="flex h-12 w-full items-center justify-center rounded-full bg-zinc-900 text-sm font-semibold text-white disabled:opacity-50"
+            className="flex h-12 w-full items-center justify-center rounded-full bg-nuit text-sm font-semibold text-white disabled:opacity-50"
           >
             {chargement ? "Redirection vers le paiement…" : "Continuer vers le paiement"}
           </button>
