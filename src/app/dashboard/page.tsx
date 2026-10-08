@@ -80,8 +80,17 @@ export default async function PageVueEnsemble() {
         </p>
 
         <div className="mt-6 flex items-start gap-8">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={qrCodeDataUrl} alt="QR code du questionnaire" className="h-40 w-40 rounded-xl border border-zinc-100" />
+          <div className="flex flex-col items-start gap-3">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={qrCodeDataUrl} alt="QR code du questionnaire" className="h-40 w-40 rounded-xl border border-zinc-100" />
+            <a
+              href={qrCodeDataUrl}
+              download={`qr-code-${entreprise!.slug}.png`}
+              className="text-xs font-semibold text-signal hover:text-nuit"
+            >
+              Télécharger le QR code
+            </a>
+          </div>
           <div className="flex-1">
             <LienPartage lien={lien} />
           </div>
