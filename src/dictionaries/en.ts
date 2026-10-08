@@ -17,72 +17,81 @@ export const dictEn: Dictionary = {
     badge: "Built for local businesses",
     title: "Your customers love you. Get it on record.",
     description:
-      "Your customers never spontaneously write a review, even when they're thrilled. Starnote asks them a few simple questions right after their visit, and an AI drafts a genuine review for them, ready to publish on your Google listing in one click.",
-    ctaPrimary: "Create my business page",
-    ctaSecondary: "See how it works",
-    note: "No commitment. Your page goes live less than a minute after payment.",
-    cardBusiness: "Finest Lash Studio",
-    cardQuestion: "How was your visit?",
-    cardOptions: ["Lash extensions", "Lash lift", "Eyebrows"],
-    cardNext: "Next →",
-    cardGeneratedLabel: "Review generated in",
-    cardGeneratedTime: "8 sec",
+      "30 seconds of questions right after their visit, and your happy customers share their experience on Google. The result: more reviews, more visibility on Google Maps, more bookings.",
+    ctaPrimary: "Create my page",
+    ctaDemo: "Try it as a customer",
+    note: "Your page goes live less than a minute after payment.",
+    beforeLabel: "Before Starnote",
+    afterLabel: "With Starnote",
+    exampleTag: "Example",
+    businessName: "Lumière Beauty",
+    businessMeta: "Beauty salon · Paris",
+    beforeRating: "4.2",
+    beforeCount: "38 reviews",
+    afterRating: "4.8",
+    afterCount: "140 reviews",
+    recentReview: "“My lashes have lasted three weeks, exactly the natural look I wanted.”",
+    recentReviewWhen: "2 days ago",
+    statValue: "30 s",
+    statLabel: "to answer, on their phone",
   },
   howItWorks: {
-    title: "How it works",
-    description:
-      "Four steps, zero friction for your customer, and a steady stream of Google reviews for your business.",
+    eyebrow: "How it works",
+    title: "Your customers answer. Your reviews grow. Your calendar fills up.",
+    description: "30 seconds of questions, a review ready to post. The more reviews you have, the more people choose you.",
     steps: [
       {
-        numero: "01",
-        titre: "You create your questionnaire",
+        titre: "Your customer scans",
         description:
-          "5 generic questions tailored to your industry come pre-filled. Edit them in minutes from your dashboard.",
+          "A QR code at the till, or a link sent by text after the appointment. No app, no account to create.",
       },
       {
-        numero: "02",
-        titre: "Your customers answer in 30 seconds",
-        description:
-          "QR code at the till, SMS link, or NFC tag on the counter: your customers answer right away, on their phone, no account needed.",
+        titre: "They answer in 30 seconds",
+        description: "A few questions about their visit, which you customize from your dashboard.",
       },
       {
-        numero: "03",
-        titre: "AI drafts a review for them",
+        titre: "They choose to post on Google",
         description:
-          "Based on their answers, Starnote generates a natural, genuine review, never the same twice. The customer can edit it before publishing.",
-      },
-      {
-        numero: "04",
-        titre: "One click to publish on Google",
-        description:
-          "The review is copied automatically and your Google Business listing opens directly. The customer just has to paste and confirm.",
+          "Starnote shapes their answers into a review. They read it, edit it if they want, and post it on your Google listing in one click.",
       },
     ],
+    standTitle: "Your review in 30 seconds",
+    standScan: "Scan with your phone camera",
+    phoneBusiness: "Lumière Beauty",
+    phoneQuestion: "How do you like the result?",
+    phoneOptions: ["Exactly what I wanted", "Really good", "Fine"],
+    phoneReviewTitle: "Your review, editable",
+    phoneReviewText:
+      "My lashes have lasted three weeks, exactly the natural look I wanted. Camille took the time to explain every step.",
+    phoneCopy: "Copy and open Google",
+    privateTitle: "An unhappy customer? They write to you privately first.",
+    privateText: "Their feedback lands in your dashboard, so you can fix what didn't work.",
+    ctaDemo: "Try it as a customer",
+    ctaPrimary: "Create my page",
   },
   trust: {
     title: "Built to last, not to cheat",
     description:
-      "Many similar tools push the limits of Google's rules. Starnote is built to stay compliant, for the long run.",
+      "Many tools push the limits of Google's rules. Starnote is built to protect your listing, for the long run.",
     points: [
       {
-        titre: "Negative reviews never disappear",
+        titre: "100% genuine reviews",
         description:
-          "An unhappy customer is directed to a private feedback form sent straight to your business, never blocked or hidden from Google. Compliant with Google's rules and online review regulations.",
+          "Every review comes from a real customer, based on their own answers. They read, edit and post it themselves.",
       },
       {
         titre: "Reviews that don't sound alike",
         description:
-          "Every generated review is unique, written from each customer's own answers. No copy-pasted text that would raise flags with Google.",
+          "Every review is written from each customer's own answers. No copy-pasted text that would raise flags with Google.",
       },
       {
-        titre: "QR code, NFC, or a simple link",
-        description:
-          "Share your questionnaire however you like: a QR code sign at the till, a contactless NFC tag, or a link sent by text after the appointment.",
+        titre: "A questionnaire that looks like you",
+        description: "Your questions, your color, your own getstarnote.com/your-name address. Editable anytime.",
       },
       {
-        titre: "A dashboard to stay in control",
+        titre: "QR code or a simple link",
         description:
-          "Customizable questions, completion rate, volume of reviews generated, centralized private feedback: everything visible at a glance.",
+          "A sign at the till, or a link sent by text after the appointment. Nothing for your customers to install.",
       },
     ],
   },
@@ -110,11 +119,11 @@ export const dictEn: Dictionary = {
       },
       {
         q: "What happens if a customer isn't satisfied?",
-        r: "They're directed to a private feedback form sent straight to you, instead of to Google. They're never prevented from leaving a public review if they want to.",
+        r: "They can write to you privately: their feedback lands in your dashboard, so you can fix what didn't work.",
       },
       {
         q: "Can I change the questions asked to my customers?",
-        r: "Yes, entirely, from your dashboard. 5 generic questions tailored to your industry come pre-filled so you can get started quickly.",
+        r: "Yes, entirely, from your dashboard. 5 questions come pre-filled so you can get started quickly.",
       },
       {
         q: "How long until I'm live?",

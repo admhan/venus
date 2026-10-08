@@ -15,72 +15,83 @@ export const dictFr = {
     badge: "Fait pour les commerces de proximité",
     title: "Vos clients vous adorent. Faites-le noter.",
     description:
-      "Vos clients n'écrivent jamais spontanément un avis, même quand ils sont ravis. Starnote leur pose quelques questions simples juste après leur passage, et une IA rédige pour eux un avis sincère, prêt à publier sur votre fiche Google en un clic.",
-    ctaPrimary: "Créer la page de mon établissement",
-    ctaSecondary: "Voir comment ça marche",
-    note: "Sans engagement de durée. Votre page est en ligne moins d'une minute après paiement.",
-    cardBusiness: "Finest Lash Studio",
-    cardQuestion: "Comment s'est passée votre visite ?",
-    cardOptions: ["Extensions de cils", "Rehaussement de cils", "Sourcils"],
-    cardNext: "Suivant →",
-    cardGeneratedLabel: "Avis généré en",
-    cardGeneratedTime: "8 sec",
+      "30 secondes de questions juste après leur visite, et vos clients satisfaits partagent leur expérience sur Google. Résultat : plus d'avis, plus de visibilité sur Google Maps, plus de rendez-vous.",
+    ctaPrimary: "Créer ma page",
+    ctaDemo: "Essayez comme un client",
+    note: "Votre page est en ligne moins d'une minute après le paiement.",
+    beforeLabel: "Avant Starnote",
+    afterLabel: "Avec Starnote",
+    exampleTag: "Exemple",
+    businessName: "Institut Lumière",
+    businessMeta: "Institut de beauté · Paris 11e",
+    beforeRating: "4,2",
+    beforeCount: "38 avis",
+    afterRating: "4,8",
+    afterCount: "140 avis",
+    recentReview: "« Mes cils tiennent depuis trois semaines, exactement le rendu naturel que je voulais. »",
+    recentReviewWhen: "il y a 2 jours",
+    statValue: "30 s",
+    statLabel: "pour répondre, sur téléphone",
   },
   howItWorks: {
-    title: "Comment ça marche",
-    description:
-      "Quatre étapes, zéro friction pour votre client, et un flux d'avis Google constant pour votre établissement.",
+    eyebrow: "Comment ça marche",
+    title: "Vos clients répondent. Vos avis montent. Votre agenda se remplit.",
+    description: "30 secondes de questions, un avis prêt à publier. Plus vous avez d'avis, plus on vous choisit.",
     steps: [
       {
-        numero: "01",
-        titre: "Vous créez votre questionnaire",
+        titre: "Votre client scanne",
         description:
-          "5 questions génériques pensées pour votre secteur sont pré-remplies. Modifiez-les en quelques minutes depuis votre tableau de bord.",
+          "QR code en caisse, ou lien envoyé par SMS après le rendez-vous. Pas d'application, pas de compte à créer.",
       },
       {
-        numero: "02",
-        titre: "Vos clients y répondent en 30 secondes",
+        titre: "Il répond en 30 secondes",
         description:
-          "QR code en caisse, lien par SMS, ou tag NFC sur le comptoir : vos clients répondent à chaud, sur leur téléphone, sans créer de compte.",
+          "Quelques questions sur sa visite, que vous personnalisez depuis votre tableau de bord.",
       },
       {
-        numero: "03",
-        titre: "L'IA rédige un avis pour eux",
+        titre: "Il choisit de publier sur Google",
         description:
-          "À partir de leurs réponses, Starnote génère un avis naturel et sincère, jamais deux fois identique. Le client peut le modifier avant de le publier.",
-      },
-      {
-        numero: "04",
-        titre: "Un clic pour publier sur Google",
-        description:
-          "L'avis est copié automatiquement et votre fiche Google Business s'ouvre directement. Le client n'a plus qu'à coller et valider.",
+          "Starnote met ses réponses en forme. Il relit, modifie s'il le souhaite, et publie sur votre fiche Google en un clic.",
       },
     ],
+    standTitle: "Votre avis en 30 secondes",
+    standScan: "Scannez avec l'appareil photo",
+    phoneBusiness: "Institut Lumière",
+    phoneQuestion: "Que pensez-vous du résultat ?",
+    phoneOptions: ["Exactement ce que je voulais", "Très réussi", "Correct"],
+    phoneReviewTitle: "Votre avis, modifiable",
+    phoneReviewText:
+      "Mes cils tiennent depuis trois semaines, exactement le rendu naturel que je voulais. Camille a pris le temps de tout m'expliquer.",
+    phoneCopy: "Copier et ouvrir Google",
+    privateTitle: "Un client déçu ? Il vous écrit d'abord en privé.",
+    privateText: "Son retour arrive dans votre tableau de bord, pour que vous puissiez améliorer ce qui n'a pas plu.",
+    ctaDemo: "Essayez comme un client",
+    ctaPrimary: "Créer ma page",
   },
   trust: {
     title: "Pensé pour durer, pas pour tricher",
     description:
-      "Beaucoup d'outils similaires jouent avec les limites des règles Google. Starnote est construit pour rester dans les clous, sur le long terme.",
+      "Beaucoup d'outils jouent avec les limites des règles Google. Starnote est construit pour protéger votre fiche, sur le long terme.",
     points: [
       {
-        titre: "Les avis négatifs ne disparaissent jamais",
+        titre: "Des avis 100 % authentiques",
         description:
-          "Un client mécontent est orienté vers un formulaire de feedback privé envoyé directement à votre établissement, jamais bloqué ni caché de Google. Conforme aux règles Google et à la législation sur les avis en ligne.",
+          "Chaque avis vient d'un vrai client, à partir de ses propres réponses. Il relit, modifie et publie lui-même.",
       },
       {
         titre: "Des avis qui ne se ressemblent pas",
         description:
-          "Chaque avis généré est unique, rédigé à partir des réponses propres à chaque client. Pas de texte copié-collé qui ferait tiquer Google.",
+          "Chaque avis est rédigé à partir des réponses propres à chaque client. Pas de texte copié-collé qui ferait tiquer Google.",
       },
       {
-        titre: "QR code, NFC ou simple lien",
+        titre: "Un questionnaire à votre image",
         description:
-          "Diffusez votre questionnaire comme vous le souhaitez : affichette avec QR code en caisse, tag NFC sans contact, ou lien envoyé par SMS après le rendez-vous.",
+          "Vos questions, votre couleur, votre adresse getstarnote.com/votre-nom. Modifiable à tout moment.",
       },
       {
-        titre: "Un tableau de bord pour piloter",
+        titre: "QR code ou simple lien",
         description:
-          "Questions personnalisables, taux de complétion, volume d'avis généré, feedback privé centralisé : tout est visible en un coup d'œil.",
+          "Affiche en caisse, ou lien envoyé par SMS après le rendez-vous. Rien à installer pour vos clients.",
       },
     ],
   },
@@ -108,11 +119,11 @@ export const dictFr = {
       },
       {
         q: "Que se passe-t-il si un client n'est pas satisfait ?",
-        r: "Il est orienté vers un formulaire de feedback privé qui vous est envoyé directement, plutôt que vers Google. Il n'est jamais empêché de laisser un avis public s'il le souhaite.",
+        r: "Il peut vous écrire en privé : son retour arrive dans votre tableau de bord, pour que vous puissiez améliorer ce qui n'a pas plu.",
       },
       {
         q: "Puis-je changer les questions posées à mes clients ?",
-        r: "Oui, entièrement, depuis votre tableau de bord. 5 questions génériques adaptées à votre secteur sont pré-remplies pour démarrer rapidement.",
+        r: "Oui, entièrement, depuis votre tableau de bord. 5 questions sont pré-remplies pour démarrer rapidement.",
       },
       {
         q: "Combien de temps pour être en ligne ?",
