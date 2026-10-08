@@ -1,32 +1,15 @@
-const QUESTIONS = [
-  {
-    q: "Est-ce que les avis générés sont faux ?",
-    r: "Non. Chaque avis est rédigé à partir de réponses réellement données par un client qui a visité votre établissement, et il peut le modifier avant de le publier. Starnote aide à la rédaction, pas à la fabrication d'avis.",
-  },
-  {
-    q: "Que se passe-t-il si un client n'est pas satisfait ?",
-    r: "Il est orienté vers un formulaire de feedback privé qui vous est envoyé directement, plutôt que vers Google. Il n'est jamais empêché de laisser un avis public s'il le souhaite.",
-  },
-  {
-    q: "Puis-je changer les questions posées à mes clients ?",
-    r: "Oui, entièrement, depuis votre tableau de bord. 5 questions génériques adaptées à votre secteur sont pré-remplies pour démarrer rapidement.",
-  },
-  {
-    q: "Combien de temps pour être en ligne ?",
-    r: "Votre page est créée automatiquement dès la confirmation du paiement, généralement en moins d'une minute.",
-  },
-];
+import { getDict, type Locale } from "@/lib/i18n";
 
-export function Faq() {
+export function Faq({ locale }: { locale: Locale }) {
+  const dict = getDict(locale).faq;
+
   return (
     <section id="faq" className="bg-zinc-50 py-24">
       <div className="mx-auto max-w-3xl px-6">
-        <h2 className="text-3xl font-bold tracking-tight text-nuit sm:text-4xl">
-          Questions fréquentes
-        </h2>
+        <h2 className="text-3xl font-bold tracking-tight text-nuit sm:text-4xl">{dict.title}</h2>
 
         <div className="mt-12 divide-y divide-zinc-200">
-          {QUESTIONS.map((item) => (
+          {dict.items.map((item) => (
             <div key={item.q} className="py-6">
               <h3 className="text-base font-semibold text-nuit">{item.q}</h3>
               <p className="mt-2 text-sm leading-relaxed text-zinc-600">{item.r}</p>

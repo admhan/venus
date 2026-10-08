@@ -1,8 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import { getDict, type Locale } from "@/lib/i18n";
 
-export function LienPartage({ lien }: { lien: string }) {
+export function LienPartage({ lien, locale }: { lien: string; locale: Locale }) {
+  const dict = getDict(locale).dashboardOverview;
   const [copie, setCopie] = useState(false);
 
   async function copier() {
@@ -18,7 +20,7 @@ export function LienPartage({ lien }: { lien: string }) {
         onClick={copier}
         className="rounded-full bg-nuit px-4 py-1.5 text-xs font-semibold text-white"
       >
-        {copie ? "Copié !" : "Copier"}
+        {copie ? dict.copied : dict.copy}
       </button>
     </div>
   );

@@ -2,6 +2,7 @@
 
 import { useState, useTransition } from "react";
 import { sauvegarderQuestions } from "@/app/dashboard/questions/actions";
+import { getDict, type Locale } from "@/lib/i18n";
 import type { TypeQuestion } from "@/lib/types/db";
 
 interface QuestionLocale {
@@ -10,14 +11,14 @@ interface QuestionLocale {
   options: string[] | null;
 }
 
-const LABELS_TYPE: Record<TypeQuestion, string> = {
-  choix_unique: "Choix unique",
-  choix_multiple: "Choix multiple",
-  texte_libre: "Texte libre",
-  note: "Note (1 à 5)",
-};
-
-export function QuestionsEditor({ questionsInitiales }: { questionsInitiales: QuestionLocale[] }) {
+export function QuestionsEditor({
+  questionsInitiales,
+  locale,
+}: {
+  questionsInitiales: QuestionLocale[];
+  locale: Locale;
+}) {
+  const dict = getDict(locale).dashboardQuestions;
   const [questions, setQuestions] = useState<QuestionLocale[]>(questionsInitiales);
   const [isPending, startTransition] = useTransition();
   const [sauvegarde, setSauvegarde] = useState(false);
@@ -46,7 +47,7 @@ export function QuestionsEditor({ questionsInitiales }: { questionsInitiales: Qu
 
   function sauvegarderTout() {
     startTransition(async () => {
-      await sauvegarderQuestions(questions);
+      await sauvegarderQuestions(questions, locale);
       setSauvegarde(true);
       setTimeout(() => setSauvegarde(false), 2000);
     });
@@ -61,18 +62,18 @@ export function QuestionsEditor({ questionsInitiales }: { questionsInitiales: Qu
               <input
                 value={question.texte}
                 onChange={(e) => mettreAJour(index, { texte: e.target.value })}
-                placeholder="Texte de la question"
+                placeholder={dict.textPlaceholder}
                 className="flex-1 border-b border-transparent text-sm font-medium text-nuit focus:border-zinc-300 focus:outline-none"
               />
               <div className="flex items-center gap-2">
                 <button onClick={() => deplacer(index, -1)} className="text-xs text-zinc-400 hover:text-zinc-700">
-                  ↑
+                  {dict.moveUp}
                 </button>
                 <button onClick={() => deplacer(index, 1)} className="text-xs text-zinc-400 hover:text-zinc-700">
-                  ↓
+                  {dict.moveDown}
                 </button>
                 <button onClick={() => supprimerQuestion(index)} className="text-xs text-red-500 hover:text-red-700">
-                  Supprimer
+                  {dict.remove}
                 </button>
               </div>
             </div>
@@ -88,7 +89,7 @@ export function QuestionsEditor({ questionsInitiales }: { questionsInitiales: Qu
               }}
               className="mt-3 rounded-lg border border-zinc-200 px-3 py-1.5 text-xs text-zinc-600"
             >
-              {Object.entries(LABELS_TYPE).map(([valeur, label]) => (
+              {Object.entries(dict.typeLabels).map(([valeur, label]) => (
                 <option key={valeur} value={valeur}>
                   {label}
                 </option>
@@ -122,12 +123,15 @@ export function QuestionsEditor({ questionsInitiales }: { questionsInitiales: Qu
                 <button
                   onClick={() =>
                     mettreAJour(index, {
-                      options: [...(question.options || []), `Option ${(question.options?.length || 0) + 1}`],
+                      options: [
+                        ...(question.options || []),
+                        `${dict.optionPrefix} ${(question.options?.length || 0) + 1}`,
+                      ],
                     })
                   }
                   className="text-xs font-medium text-signal hover:text-nuit"
                 >
-                  + Ajouter une option
+                  {dict.addOption}
                 </button>
               </div>
             )}
@@ -140,14 +144,14 @@ export function QuestionsEditor({ questionsInitiales }: { questionsInitiales: Qu
           onClick={ajouterQuestion}
           className="rounded-full border border-zinc-200 px-5 py-2 text-sm font-medium text-zinc-700 hover:bg-zinc-50"
         >
-          + Ajouter une question
+          {dict.addQuestion}
         </button>
         <button
           onClick={sauvegarderTout}
           disabled={isPending}
           className="rounded-full bg-nuit px-6 py-2 text-sm font-semibold text-white disabled:opacity-50"
         >
-          {isPending ? "Enregistrement…" : sauvegarde ? "Enregistré ✓" : "Enregistrer"}
+          {isPending ? dict.saving : sauvegarde ? dict.saved : dict.save}
         </button>
       </div>
     </div>

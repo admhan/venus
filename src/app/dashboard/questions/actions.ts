@@ -2,6 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
+import { localizedHref, type Locale } from "@/lib/i18n";
 import type { TypeQuestion } from "@/lib/types/db";
 
 interface QuestionInput {
@@ -10,7 +11,7 @@ interface QuestionInput {
   options: string[] | null;
 }
 
-export async function sauvegarderQuestions(questions: QuestionInput[]) {
+export async function sauvegarderQuestions(questions: QuestionInput[], locale: Locale = "fr") {
   const supabase = await createClient();
   const {
     data: { user },
@@ -38,5 +39,5 @@ export async function sauvegarderQuestions(questions: QuestionInput[]) {
     );
   }
 
-  revalidatePath("/dashboard/questions");
+  revalidatePath(localizedHref(locale, "/dashboard/questions"));
 }

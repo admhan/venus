@@ -5,6 +5,7 @@ import { createAdminClient } from "@/lib/supabase/admin";
 import { isSupabaseConfigured } from "@/lib/supabase/is-configured";
 import { getSiteUrl } from "@/lib/site-url";
 import { slugifier } from "@/lib/slug";
+import { localizedHref } from "@/lib/i18n";
 
 const bodySchema = z.object({
   nom: z.string().min(1),
@@ -13,6 +14,7 @@ const bodySchema = z.object({
   periodicite: z.enum(["mensuel", "annuel"]),
   googleReviewUrl: z.string().url(),
   userId: z.string().uuid(),
+  locale: z.enum(["fr", "en"]).default("fr"),
 });
 
 export async function POST(request: Request) {
@@ -29,7 +31,7 @@ export async function POST(request: Request) {
   }
 
   const slug = slugifier(parsed.data.slug);
-  const { nom, email, periodicite, googleReviewUrl, userId } = parsed.data;
+  const { nom, email, periodicite, googleReviewUrl, userId, locale } = parsed.data;
 
   if (isSupabaseConfigured()) {
     const supabase = createAdminClient();
@@ -57,8 +59,8 @@ export async function POST(request: Request) {
     customer_email: email,
     line_items: [{ price: getPriceId(periodicite), quantity: 1 }],
     metadata: { nom, slug, email, periodicite, googleReviewUrl, userId },
-    success_url: `${siteUrl}/inscription/succes?session_id={CHECKOUT_SESSION_ID}`,
-    cancel_url: `${siteUrl}/inscription`,
+    success_url: `${siteUrl}${localizedHref(locale, "/inscription/succes")}?session_id={CHECKOUT_SESSION_ID}`,
+    cancel_url: `${siteUrl}${localizedHref(locale, "/inscription")}`,
   });
 
   return NextResponse.json({ url: session.url });

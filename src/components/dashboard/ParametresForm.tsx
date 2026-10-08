@@ -2,9 +2,11 @@
 
 import { useState, useTransition } from "react";
 import { sauvegarderParametres } from "@/app/dashboard/parametres/actions";
+import { getDict, type Locale } from "@/lib/i18n";
 import type { Entreprise } from "@/lib/types/db";
 
-export function ParametresForm({ entreprise }: { entreprise: Entreprise }) {
+export function ParametresForm({ entreprise, locale }: { entreprise: Entreprise; locale: Locale }) {
+  const dict = getDict(locale).dashboardParametres;
   const [nom, setNom] = useState(entreprise.nom);
   const [couleur, setCouleur] = useState(entreprise.couleur_primaire);
   const [googleUrl, setGoogleUrl] = useState(entreprise.google_review_url || "");
@@ -16,13 +18,16 @@ export function ParametresForm({ entreprise }: { entreprise: Entreprise }) {
   function enregistrer(e: React.FormEvent) {
     e.preventDefault();
     startTransition(async () => {
-      await sauvegarderParametres({
-        nom,
-        couleur_primaire: couleur,
-        google_review_url: googleUrl,
-        email_contact: email,
-        seuil_note_positive: seuil,
-      });
+      await sauvegarderParametres(
+        {
+          nom,
+          couleur_primaire: couleur,
+          google_review_url: googleUrl,
+          email_contact: email,
+          seuil_note_positive: seuil,
+        },
+        locale
+      );
       setSauvegarde(true);
       setTimeout(() => setSauvegarde(false), 2000);
     });
@@ -31,7 +36,7 @@ export function ParametresForm({ entreprise }: { entreprise: Entreprise }) {
   return (
     <form onSubmit={enregistrer} className="max-w-xl space-y-6">
       <div>
-        <label className="text-sm font-medium text-zinc-700">Nom de l&apos;établissement</label>
+        <label className="text-sm font-medium text-zinc-700">{dict.nomLabel}</label>
         <input
           value={nom}
           onChange={(e) => setNom(e.target.value)}
@@ -40,7 +45,7 @@ export function ParametresForm({ entreprise }: { entreprise: Entreprise }) {
       </div>
 
       <div>
-        <label className="text-sm font-medium text-zinc-700">Couleur de marque</label>
+        <label className="text-sm font-medium text-zinc-700">{dict.colorLabel}</label>
         <div className="mt-1.5 flex items-center gap-3">
           <input
             type="color"
@@ -57,25 +62,18 @@ export function ParametresForm({ entreprise }: { entreprise: Entreprise }) {
       </div>
 
       <div>
-        <label className="text-sm font-medium text-zinc-700">Lien direct vers votre fiche d&apos;avis Google</label>
+        <label className="text-sm font-medium text-zinc-700">{dict.googleUrlLabel}</label>
         <input
           value={googleUrl}
           onChange={(e) => setGoogleUrl(e.target.value)}
-          placeholder="https://g.page/r/.../review"
+          placeholder={dict.googleUrlPlaceholder}
           className="mt-1.5 w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm"
         />
-        <p className="mt-1.5 text-xs text-zinc-500">
-          Sans ce lien, vos clients atterrissent sur une recherche Google générique au lieu de votre page
-          d&apos;avis — à éviter. Pour le récupérer sans friction : cherchez votre établissement sur Google
-          Maps → bouton <span className="font-medium">Partager</span> → <span className="font-medium">Demander des avis</span>,
-          ou dans votre fiche Google Business Profile → <span className="font-medium">Obtenir plus d&apos;avis</span>.
-          Le lien ressemble à <code className="rounded bg-zinc-100 px-1 py-0.5">g.page/r/.../review</code> et ouvre
-          directement la fenêtre de rédaction d&apos;avis, sans étape intermédiaire.
-        </p>
+        <p className="mt-1.5 text-xs text-zinc-500">{dict.googleUrlHelp}</p>
       </div>
 
       <div>
-        <label className="text-sm font-medium text-zinc-700">E-mail de contact</label>
+        <label className="text-sm font-medium text-zinc-700">{dict.emailLabel}</label>
         <input
           type="email"
           value={email}
@@ -86,7 +84,7 @@ export function ParametresForm({ entreprise }: { entreprise: Entreprise }) {
 
       <div>
         <label className="text-sm font-medium text-zinc-700">
-          Note minimale pour orienter vers Google ({seuil}/5)
+          {dict.thresholdLabelPrefix} ({seuil}/5)
         </label>
         <input
           type="range"
@@ -96,9 +94,7 @@ export function ParametresForm({ entreprise }: { entreprise: Entreprise }) {
           onChange={(e) => setSeuil(Number(e.target.value))}
           className="mt-1.5 w-full"
         />
-        <p className="mt-1 text-xs text-zinc-400">
-          En dessous de cette note, le client est orienté vers le feedback privé plutôt que vers Google.
-        </p>
+        <p className="mt-1 text-xs text-zinc-400">{dict.thresholdHelp}</p>
       </div>
 
       <button
@@ -106,7 +102,7 @@ export function ParametresForm({ entreprise }: { entreprise: Entreprise }) {
         disabled={isPending}
         className="rounded-full bg-nuit px-6 py-2.5 text-sm font-semibold text-white disabled:opacity-50"
       >
-        {isPending ? "Enregistrement…" : sauvegarde ? "Enregistré ✓" : "Enregistrer"}
+        {isPending ? dict.saving : sauvegarde ? dict.saved : dict.save}
       </button>
     </form>
   );

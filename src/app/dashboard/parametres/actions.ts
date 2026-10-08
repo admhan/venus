@@ -2,6 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
+import { localizedHref, type Locale } from "@/lib/i18n";
 
 interface ParametresInput {
   nom: string;
@@ -11,7 +12,7 @@ interface ParametresInput {
   seuil_note_positive: number;
 }
 
-export async function sauvegarderParametres(params: ParametresInput) {
+export async function sauvegarderParametres(params: ParametresInput, locale: Locale = "fr") {
   const supabase = await createClient();
   const {
     data: { user },
@@ -20,6 +21,6 @@ export async function sauvegarderParametres(params: ParametresInput) {
 
   await supabase.from("entreprises").update(params).eq("user_id", user.id);
 
-  revalidatePath("/dashboard/parametres");
-  revalidatePath("/dashboard");
+  revalidatePath(localizedHref(locale, "/dashboard/parametres"));
+  revalidatePath(localizedHref(locale, "/dashboard"));
 }
